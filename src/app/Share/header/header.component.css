@@ -1,0 +1,36 @@
+.header {
+    background-color: #080808;
+    height: 30px;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Times;
+}
+
+.h1-item {
+    font-size: 20px;
+    margin-left: 86px;
+}
+
+.h1-item:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+
+.header-item li {
+    display: inline-block;
+    margin-left: 25px;
+    line-height: 40px;
+}
+
+.header-item li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-item li a:hover {
+    color: orange;
+}
