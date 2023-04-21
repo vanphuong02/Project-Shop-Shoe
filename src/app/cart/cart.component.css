@@ -1,0 +1,156 @@
+* {
+    font-family: sans-serif;
+    /* Change your font family */
+}
+
+.all {
+    max-width: 60%;
+
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 100px 0;
+    font-size: 0.9em;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    left: 40px;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.table-img {
+    width: 180px;
+    height: 180px;
+}
+
+.table-name {
+    color: #000;
+    font-weight: 600;
+}
+
+.table-price {
+    color: #f15e2c;
+}
+
+.btn {
+    background-color: #2AAF74;
+    border-color: transparent;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.removeall-item {
+    background-color: #2AAF74;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 4px;
+    width: 150px;
+    height: 40px;
+    position: relative;
+    bottom: 35px;
+    left: 40px;
+}
+
+.black {
+    background-color: #2AAF74;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 4px;
+    width: 150px;
+    height: 40px;
+    position: relative;
+    bottom: 35px;
+    left: 60px;
+    margin-right: 50px;
+}
+
+.btn:hover,
+.black:hover,
+.removeall-item:hover {
+    background-color: #494949;
+}
+
+.removeall {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    float: right;
+    position: absolute;
+    left: 64%;
+    top: 50%;
+}
+
+.total-item {
+    border-collapse: collapse;
+    margin: 100px 0;
+    font-size: 0.9em;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    position: relative;
+    left: 40px;
+    background-color: #f3f3f3;
+    padding: 75px 120px;
+}
+
+.order {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 25px;
+}
+
+.linee {
+    border-bottom: 2px solid #000;
+    width: 330%;
+    margin-top: 10px;
+}
+
+.total-price {
+    position: absolute;
+    left: 10px;
+    top: 80px;
+    font-size: 25px;
+}
+
+.button-total {
+    background-color: #2AAF74;
+    border-color: transparent;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+   position: relative;
+   top: 60px;
+}

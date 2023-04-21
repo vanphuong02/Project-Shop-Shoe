@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ColorService } from 'src/app/services/color.service';
-
+import { Route } from '@angular/router';
 
 
 @Component({
@@ -53,5 +53,6 @@ export class NavbarComponent implements OnInit {
       })
     })
   }
+
 
 }

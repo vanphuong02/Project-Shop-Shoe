@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ColorService } from 'src/app/services/color.service';
 import { query } from '@angular/animations';
 import { Product } from 'src/app/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -12,16 +13,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductDetailComponent implements OnInit {
   product: undefined | Product;
   number = 1
-  selectedSize = 35
-  constructor(private api: ColorService, private detail: ColorService, private router: ActivatedRoute, private fb: FormBuilder) { }
+  selectedOption: any;
+
+  constructor(private detail: ColorService, private router: ActivatedRoute, private routerProdcut: Router) { }
 
   ngOnInit(): void {
-    this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
+    let productid = this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
       this.product = res
-      console.log(this.product);
 
     })
-
   }
   handerclickplus() {
     if (this.number < 20) {
@@ -33,14 +33,41 @@ export class ProductDetailComponent implements OnInit {
       this.number = this.number - 1
     }
   }
-  AddToCard() {
+  AddToCart() {
     if (this.product) {
       this.product.quantity = this.number;
-      if (!localStorage.getItem('user')) {
-        console.log(this.product);
-        this.detail.localAddTocard(this.product)
+      if (sessionStorage.getItem('user')) {
+        this.detail.localAddToCart({ ...this.product, size: this.selectedOption });
+      }
+      console.log(this.product);
+    }
+
+  }
+  AddToPay() {
+    if (this.product) {
+      this.product.quantity = this.number;
+      // this.product.size = this.selectedOption
+      if (sessionStorage.getItem('user')) {
+        this.detail.localAddToCart({ ...this.product, size: this.selectedOption });
       }
 
+
+      console.log(this.product);
+      // if (sessionStorage.getItem('user')) {
+      //   this.detail.localAddToCart(this.product)
+      // }
     }
+    this.routerProdcut.navigate(['/card'])
   }
+  //   let cartData = sessionStorage.getItem('localCart')
+  //   if (productid && cartData) {
+  //     let items = JSON.parse(cartData);
+  //     items = items.filter((item: any) => productid === item.id.toString())
+  //     if (items.length) {
+  //       this.removeCart = true
+  //     } else {
+  //       this.removeCart = false
+  //     }
+  //   }
+  // }
 }

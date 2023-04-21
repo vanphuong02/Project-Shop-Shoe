@@ -12,10 +12,12 @@
         <div class="colors">{{product.color}}</div>
         <div class="line"></div>
         <div class="name-space">
-            <span class="span-name">Size</span>
-
-            <select class="opton-em">
-                <option class="option-item" *ngFor="let item of product.size">{{item}}</option>
+            <div>
+                <span class="span-name">Size</span>
+            </div>
+            <select name="size" class="opton-em" [(ngModel)]="selectedOption">
+                <option [value]="item" class="option-item" *ngFor="let item of product.size">{{item}}</option>
+                <div> ban chua chon size</div>
             </select>
         </div>
         <div class="name-number">
@@ -27,8 +29,8 @@
             </div>
         </div>
         <div class="buton-chird">
-            <button class="button-chird-item" (click)="AddToCard()">Thêm Vào Giỏ Hàng</button>
-            <button class="button-chird-item-node">Thanh Toán</button>
+            <button class="button-chird-item" (click)="AddToCart()">Thêm Vào Giỏ Hàng</button>
+            <button class="button-chird-item-node" (click)="AddToPay()">Thanh Toán</button>
         </div>
     </div>
 

@@ -1,38 +1,36 @@
-<ng-container *ngIf="true">
-    <div class="card-table">
-        <div class="card-product">
-            <table class="table-table-responsive">
-                <thead>
-                    <tr>
-                        <th>Tên Giày</th>
-                        <th>Hình ảnh</th>
-                        <th>Giá</th>
-                        <th>Size</th>
-                        <th>Số lượng</th>
-                        <th>Tổng tiền</th>
-                        <th>Hoạt động</th>
-
-                    </tr>
-                </thead>
-                <tr>
-                    <td>Giày nữ</td>
-                    <td>Giày nữ</td>
-                    <td>Giày nữ</td>
-                    <td>Giày nữ</td>
-                    <td>Giày nữ</td>
-                    <td>Giày nữ</td>
-                    <td><button class="btn btn-danger">Xoá</button></td>
-
-                </tr>
-            </table>
-        </div>
+<div class="all">
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Tên Giày</th>
+                <th>Hình ảnh</th>
+                <th>Giá</th>
+                <th>Size</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let card of product">
+                <td class="table-name">{{card.ShoeName}}</td>
+                <td><img class="table-img" src="{{card.img}}"></td>
+                <td class="table-price">{{card.price |currency:'VND':'' }} VND</td>
+                <td>{{card.size}}</td>
+                <td>{{card.quantity}}</td>
+                <td><button class="btn" let i =index >Xoá</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="removeall">
+        <button class="removeall-item" (click)="removeall()">Xoá tất cả</button>
+        <button class="black" routerLink="/Product/product-list">Quay lại mua hàng</button>
     </div>
-</ng-container>
-
-<ng-container *ngIf="false">
-    <div class="center">
-        <h4>Bạn chưa mua hàng</h4>
-        <h5>Vui lòng quay lại mua hàng!</h5>
-        <button routerLink="Product/Product-list">Shop now</button>
+    <div class="total">
+        <form class="total-item">
+            <div class="order">Đơn Hàng
+                <div class="linee"></div>
+            </div>
+            <div class="total-price">Tổng tiền: {{total |currency:'VND':''}}VND</div>
+            <button class="button-total">Tiếp Tục thanh toán</button>
+        </form>
     </div>
-</ng-container>

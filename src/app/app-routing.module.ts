@@ -7,10 +7,12 @@ import { ProductDetailComponent } from './Product/product-detail/product-detail.
 import { RegisterComponent } from './register/register.component';
 import { ProductListComponent } from './Product/product-list/product-list.component';
 import { ProductFilterComponent } from './Product/product-filter/product-filter.component';
+import { OrderStatusComponent } from './order-status/order-status.component';
+
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
@@ -22,6 +24,7 @@ const routes: Routes = [
     ]
   },
   { path: 'card', component: CartComponent },
+  { path: 'order-status', component: OrderStatusComponent }
 
 ];
 

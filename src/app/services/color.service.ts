@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../product';
+import { EmitterVisitorContext } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorService {
-
+  cartData = new EventEmitter<Product[] | []>();
+  cartPay = new EventEmitter<Product[] | []>();
   public search = new BehaviorSubject<string>("")
-  product: any;
-
   constructor(private http: HttpClient) { }
   getProduct(): Observable<any> {
     return this.http.get('http://localhost:3000/Products')
@@ -19,17 +19,52 @@ export class ColorService {
   getId(id: any): Observable<any> {
     return this.http.get('http://localhost:3000/Products/' + id)
   }
-  localAddTocard(data: Product) {
-    let cardData = []
-    let localCart = localStorage.getItem('localCart');
-    if (!localCart) {
-      localStorage.setItem('localCart', JSON.stringify([data]));
-    } else {
-      cardData = JSON.parse(localCart);
-      cardData.push(data)
-      localStorage.setItem('localCart', JSON.stringify([cardData]));
-    }
+  // localAddToCart(data: Product) {
+  //   let cartData = []
+  //   let localCart = sessionStorage.getItem('localCart');
+  //   if (!localCart) {
+  //     sessionStorage.setItem('localCart', JSON.stringify(data));
+  //   } else {
+  //     cartData = JSON.parse(localCart);
+  //     if (Array.isArray(cartData)) {
+  //       cartData.push(data);
+  //       sessionStorage.setItem('localCart', JSON.stringify(cartData));
+  //     } else {
+  //       cartData = [cartData, data];
+  //       sessionStorage.setItem('localCart', JSON.stringify(cartData));
+  //     }
+  //   }
+  //   this.cartData.emit(cartData);
+  // }
+  localAddToCart(data: Product) {
+    let cartData = JSON.parse(sessionStorage.getItem('localCart') || '[]');
+    cartData = Array.isArray(cartData) ? cartData.concat(data) : [cartData, data];
+    sessionStorage.setItem('localCart', JSON.stringify(cartData));
+    this.cartData.emit(cartData);
+  }
 
+  // localAddToPay(data: Product) {
+  //   let cartPay = []
+  //   let localCart = sessionStorage.getItem('localCart');
+  //   if (!localCart) {
+  //     sessionStorage.setItem('localCart', JSON.stringify(data));
+  //   } else {
+  //     cartPay = JSON.parse(localCart);
+  //     if (Array.isArray(cartPay)) {
+  //       cartPay.push(data);
+  //       sessionStorage.setItem('localCart', JSON.stringify(cartPay));
+  //     } else {
+  //       cartPay = cartPay, data;
+  //       sessionStorage.setItem('localCart', JSON.stringify(cartPay));
+  //     }
+  //   }
+  //   this.cartPay.emit(cartPay);
+  // }
+  localAddToPay(data: Product) {
+    let cartPay = JSON.parse(sessionStorage.getItem('localCart') || '[]');
+    cartPay = Array.isArray(cartPay) ? cartPay.concat(data) : [cartPay, data];
+    sessionStorage.setItem('localCart', JSON.stringify(cartPay));
+    this.cartPay.emit(cartPay);
   }
 }
 
