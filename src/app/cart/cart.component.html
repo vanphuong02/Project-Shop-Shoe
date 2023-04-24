@@ -11,13 +11,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let card of product">
+            <tr *ngFor="let card of product; let i = index">
                 <td class="table-name">{{card.ShoeName}}</td>
                 <td><img class="table-img" src="{{card.img}}"></td>
                 <td class="table-price">{{card.price |currency:'VND':'' }} VND</td>
                 <td>{{card.size}}</td>
                 <td>{{card.quantity}}</td>
-                <td><button class="btn" let i =index >Xoá</button></td>
+                <td><button class="btn" (click)="deleteOne(i)">Xoá </button></td>
             </tr>
         </tbody>
     </table>
