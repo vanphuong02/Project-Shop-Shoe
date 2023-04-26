@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ColorService } from 'src/app/services/color.service';
+import { UserService } from 'src/app/services/user.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +12,8 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class HeaderComponent implements OnInit {
   cartItems = 0
-  constructor(private product: ColorService) {
+  name : string = ''
+  constructor(private product: ColorService , private cookieService : CookieService, private user : UserService) {
 
   }
   ngOnInit() {

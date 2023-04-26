@@ -4,6 +4,7 @@ import { ColorService } from 'src/app/services/color.service';
 import { query } from '@angular/animations';
 import { Product } from 'src/app/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,14 +15,19 @@ export class ProductDetailComponent implements OnInit {
   product: undefined | Product;
   number = 1
   selectedOption: any;
-
-  constructor(private detail: ColorService, private router: ActivatedRoute, private routerProdcut: Router) { }
+  constructor(
+     private detail: ColorService,
+     private router: ActivatedRoute,
+     private routerProdcut: Router,
+     private cookkieServer : CookieService) { }
 
   ngOnInit(): void {
-    let productid = this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
-      this.product = res
+     this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
+      console.log("res:",res);
 
+      this.product = res
     })
+
   }
   handerclickplus() {
     if (this.number < 20) {
@@ -36,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
   AddToCart() {
     if (this.product) {
       this.product.quantity = this.number;
-      if (sessionStorage.getItem('user')) {
+      if (this.cookkieServer.get('user')) {
         this.detail.localAddToCart({ ...this.product, size: this.selectedOption });
       }
       console.log(this.product);
@@ -47,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
     if (this.product) {
       this.product.quantity = this.number;
       // this.product.size = this.selectedOption
-      if (sessionStorage.getItem('user')) {
+      if (this.cookkieServer.get('user')) {
         this.detail.localAddToCart({ ...this.product, size: this.selectedOption });
       }
 
@@ -57,7 +63,7 @@ export class ProductDetailComponent implements OnInit {
       //   this.detail.localAddToCart(this.product)
       // }
     }
-    this.routerProdcut.navigate(['/card'])
+    this.routerProdcut.navigate(['/cart'])
   }
   //   let cartData = sessionStorage.getItem('localCart')
   //   if (productid && cartData) {

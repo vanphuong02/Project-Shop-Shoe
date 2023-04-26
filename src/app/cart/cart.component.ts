@@ -48,4 +48,9 @@ export class CartComponent implements OnInit {
       location.reload();
     }
   }
+  continuetopay() {
+    const cart = JSON.parse(sessionStorage.getItem('localCart') || '[]') as Product[];
+    const total = this.getTotal(cart);
+    this.route.navigate(['/order-status']);
+  }
 }

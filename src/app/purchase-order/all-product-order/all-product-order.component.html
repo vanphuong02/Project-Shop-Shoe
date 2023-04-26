@@ -1,0 +1,14 @@
+<app-purchase-order></app-purchase-order>
+<div class="order" *ngFor="let inf of infOrder">
+  <div class="order-item" *ngFor="let pr of inf.products">
+    <img src={{pr.img}} alt="Product image">
+    <div class="order-info">
+
+      <p class="product-name" *ngIf="inf" >{{pr.ShoeName}}</p>
+      <p class="quantity">Quantity:{{pr.quantity}}</p>
+      <p class="price">Price:{{pr.price|currency:'VND':''}}VND</p>
+      <button class="btnStatus" (click)="getStatus(inf.id)">xem trạng thái</button>
+    </div>
+  </div>
+</div>
+<div class="img" *ngIf="Notification">chưa có đơn hàng</div>

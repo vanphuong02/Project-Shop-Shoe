@@ -1,1 +1,45 @@
-<p>register works!</p>
+<div class="container">
+  <h1>Đăng ký</h1>
+  <form  [formGroup]="userForm" method="post" >
+    <div class="form-control">
+      <label for="username">Họ tên:</label>
+      <input
+          type="text" formControlName="fullName"
+      />
+    </div>
+    <small class="text-danger" *ngIf="userForm.controls['fullName'].dirty && userForm.hasError('required','fullName')">Vui lòng nhập họ tên</small>
+    <div class="form-control">
+      <label for="username">Tài khoản:</label>
+      <input
+          type="text" formControlName="username"
+      />
+    </div>
+    <small class="text-danger" *ngIf="userForm.controls['username'].dirty && userForm.hasError('required','username')">Vui lòng nhập tài khoản</small>
+
+    <div class="form-control">
+      <label for="email">Email:</label>
+      <input
+          type="text" formControlName="email"
+      />
+    </div>
+    <small class="text-danger" *ngIf="userForm.controls['email'].dirty && userForm.hasError('required','email')">Vui lòng nhập email</small>
+
+    <div class="form-control">
+      <label for="sodt">Số điện thoại:</label>
+      <input
+          type="text" formControlName="sodt"
+      />
+    </div>
+    <small class="text-danger" *ngIf="userForm.controls['sodt'].dirty && userForm.hasError('required','sodt')">Vui lòng nhập tài khoản</small>
+
+    <div class="form-control">
+      <label for="password">Mật khẩu:</label>
+    <input
+    type="password" formControlName="password"
+    />
+    </div>
+    <small class="text-danger" *ngIf="userForm.controls['password'].dirty && userForm.hasError('required','password')">Vui lòng nhập mật khẩu</small>
+    <button class="btn" type="submit" (click)="onSubmit()" routerLink="/login">Đăng ký</button>
+    <div class="mg-t"><a >Bạn đã có tài khoản? <a routerLink="/login">Đăng nhập</a></a></div>
+  </form>
+</div>

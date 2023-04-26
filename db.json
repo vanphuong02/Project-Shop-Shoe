@@ -1,0 +1,471 @@
+{
+  "user": [
+    {
+      "fullName": "ron",
+      "email": "ron@gmail.com",
+      "sodt": "012234",
+      "username": "ron1",
+      "password": "1",
+      "id": 8,
+      "jurisdiction": 1
+    },
+    {
+      "fullName": "heo",
+      "email": "heo@gmail.com",
+      "sodt": "012234",
+      "username": "heo",
+      "password": "1",
+      "id": 8,
+      "jurisdiction": 0
+    },
+    {
+      "fullName": "phuong",
+      "email": "heo@gmail.com",
+      "sodt": "012234",
+      "username": "user",
+      "password": "1",
+      "id": 9,
+      "jurisdiction": 0
+    }
+  ],
+  "shipInformation": [
+    {
+      "fullname": "duc",
+      "sodt": "123",
+      "address": "thon phu cam",
+      "city": "Tỉnh Thái Nguyên",
+      "distric": "Huyện Phú Lương",
+      "village": "Xã Tức Tranh",
+      "products": [
+        {
+          "id": 1,
+          "ShoeName": "Vintas Jazico ---- High Top",
+          "color": "Red",
+          "code": "AV00174",
+          "price": 491432,
+          "size": "40",
+          "quantity": 4,
+          "gender": "Nam",
+          "img": "https://ananas.vn/wp-content/uploads/Pro_AV00174_2-500x500.jpeg"
+        },
+        {
+          "id": 3,
+          "ShoeName": "Vintas Soda Pop - High Top",
+          "color": "Green",
+          "code": "NV11174",
+          "price": 1463488,
+          "size": "37",
+          "quantity": 1,
+          "gender": "Nam",
+          "img": "https://ananas.vn/wp-content/uploads/Pro_AV00155_1-500x500.jpg"
+        }
+      ],
+      "dateCreate": "26/04/2023",
+      "status": -1,
+      "id": 1,
+      "idUser": 8
+    }
+  ],
+  "Products": [
+    {
+      "id": 1,
+      "ShoeName": "Vintas Jazico ---- High Top",
+      "color": "Red",
+      "code": "AV00174",
+      "price": 491432,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00174_2-500x500.jpeg"
+    },
+    {
+      "id": 2,
+      "ShoeName": "Track 6 I.S.E.E ---- High Top",
+      "color": "Yellow",
+      "code": "AV00585",
+      "price": 880211,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_A6T012_2-500x500.jpg"
+    },
+    {
+      "id": 3,
+      "ShoeName": "Vintas Soda Pop - High Top",
+      "color": "Green",
+      "code": "NV11174",
+      "price": 1463488,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00155_1-500x500.jpg"
+    },
+    {
+      "id": 4,
+      "ShoeName": "Vintas Soda Pop - Low Top",
+      "color": "Blue",
+      "code": "AV008632",
+      "price": 1999116,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nu",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00153_2-500x500.jpg"
+    },
+    {
+      "id": 5,
+      "ShoeName": "Vintas Landforms - Low Top",
+      "color": "White",
+      "code": "NA5628",
+      "price": 1855029,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00175_1-500x500.jpg"
+    },
+    {
+      "id": 6,
+      "ShoeName": "Vintas Landforms - Low Top",
+      "color": "Violet",
+      "code": "NA52265",
+      "price": 1492266,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nữ",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00176_1-500x500.jpg"
+    },
+    {
+      "id": 7,
+      "ShoeName": "Urbas SC - Mule - High Top",
+      "color": "Blue",
+      "code": "NA526933",
+      "price": 233931,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00202_1-500x500.jpg"
+    },
+    {
+      "id": 8,
+      "ShoeName": "BUrbas SC - Muleritteny",
+      "color": "White",
+      "code": "NA5893",
+      "price": 1196400,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nữ",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00201_1-500x500.jpg"
+    },
+    {
+      "id": 9,
+      "ShoeName": "Urbas Retrospective",
+      "color": "Red",
+      "code": "HQ25632",
+      "price": 50646,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00129_1-500x500.jpg"
+    },
+    {
+      "id": 10,
+      "ShoeName": "Pattas Polka Dots - Low Top",
+      "color": "Yellow",
+      "code": "HA24527",
+      "price": 1221533,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00159_1-500x500.jpg"
+    },
+    {
+      "id": 11,
+      "ShoeName": "Kakalinabanans- High Top",
+      "color": "Red",
+      "code": "HA24525",
+      "price": 231233,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nữ",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00151_1-500x500.jpg"
+    },
+    {
+      "id": 12,
+      "ShoeName": "Basas Workaday - High Top",
+      "color": "Yellow",
+      "code": "HA22634",
+      "price": 863500,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nữ",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00152_1-500x500.jpg"
+    },
+    {
+      "id": 13,
+      "ShoeName": "Urbas Irrelevant NE - Low Top",
+      "color": "Maroon",
+      "code": "HA24551",
+      "price": 1488071,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/pro_AV00105_1-1-500x500.jpg"
+    },
+    {
+      "id": 14,
+      "ShoeName": "Urbas Retrospective - Low Top",
+      "color": "Purple",
+      "code": "MK533512",
+      "price": 393800,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00127_1-500x500.jpg"
+    },
+    {
+      "id": 15,
+      "ShoeName": "Basas Bumper Gum NE - Mule",
+      "color": "Navy",
+      "code": "HA2265",
+      "price": 232010,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00009_1-500x500.jpeg"
+    },
+    {
+      "id": 16,
+      "ShoeName": " Basas Hook N'Loop NE - Mule",
+      "color": "Violet",
+      "code": "HA9863",
+      "price": 495812,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00007_1-500x500.jpeg"
+    },
+    {
+      "id": 17,
+      "ShoeName": "Basas Bumper Gum NE ",
+      "color": "Yellow",
+      "code": "HA27863",
+      "price": 281598,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/Pro_AV00008_1-500x500.jpg"
+    },
+    {
+      "id": 18,
+      "ShoeName": "Vintas Temperate - High Top",
+      "color": "Teal",
+      "code": "PO02862",
+      "price": 395131,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nam",
+      "img": "https://ananas.vn/wp-content/uploads/pro_A61111_1-500x500.jpg"
+    },
+    {
+      "id": 19,
+      "ShoeName": "Urbas Unsettling - High Top",
+      "color": "Olive",
+      "code": "PO09632",
+      "price": 1974583,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nữ",
+      "img": "https://ananas.vn/wp-content/uploads/pro_A61107_1-500x500.jpg"
+    },
+    {
+      "id": 20,
+      "ShoeName": "Track 6 Triple Black",
+      "color": "Lime",
+      "code": "PO0936",
+      "price": 1318496,
+      "size": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "quantity": 20,
+      "gender": "Nữ",
+      "img": "https://ananas.vn/wp-content/uploads/pro_track6_A6T003_1-500x500.jpg"
+    }
+  ]
+}

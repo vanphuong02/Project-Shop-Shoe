@@ -1,0 +1,31 @@
+
+.navbar {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  height: 45px;
+}
+
+.navbar a {
+  cursor: pointer;
+  color: rgba(0, 0, 0, .8);
+  border-bottom: 2px solid rgba(0, 0, 0, .09);
+  text-decoration: none;
+  margin-right: 46px;
+  font-size: 18px;
+
+}
+.choose{
+  color: #ff5f17 !important;
+  border-bottom-color:#ff5f17 !important;
+}
+.navbar a:hover {
+  color: #ff5f17;
+  border-bottom-color:#ff5f17 ;
+  background-color: #fff;
+  outline: 0;
+}
+

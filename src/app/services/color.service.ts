@@ -14,10 +14,10 @@ export class ColorService {
   public search = new BehaviorSubject<string>("")
   constructor(private http: HttpClient) { }
   getProduct(): Observable<any> {
-    return this.http.get('http://localhost:3000/Products')
+    return this.http.get('https://64488ed3b88a78a8f0ef2838.mockapi.io/products')
   }
   getId(id: any): Observable<any> {
-    return this.http.get('http://localhost:3000/Products/' + id)
+    return this.http.get(`https://64488ed3b88a78a8f0ef2838.mockapi.io/products/${id}`)
   }
   // localAddToCart(data: Product) {
   //   let cartData = []

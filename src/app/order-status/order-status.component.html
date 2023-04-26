@@ -1,7 +1,72 @@
-<div *ngIf="product">
-    <div class="nuber">
-    </div>
-    <div class="quantiti">
+<form action="" [formGroup]="shipInformation" method="post">
+  <div class="container">
+    <div class="container-left">
+      <h2>Thông tin giao hàng</h2>
+        <input placeholder="Họ tên" type="text" formControlName="fullName" />
+        <br />
+        <input placeholder="Số điện thoại" type="text" formControlName="sodt" />
+        <br />
+        <input type="text" placeholder="Địa chỉ cụ thể" formControlName="address" />
+        <br />
+        <select name="" id="" (change)="handleChooseCity($event)" formControlName="city">
+          <option value="">Tỉnh/Thành phố</option>
+          <option *ngFor="let city of citys" [value]="city.idProvince">
+            {{ city.name }}
+          </option>
+        </select>
+        <br />
 
+        <select name="" id="" (change)="handleChooseDistric($event)" formControlName="distric">
+          <option value="">Quận/Huyện</option>
+          <option *ngFor="let distric of districs" [value]="distric.idDistrict">
+            {{ distric.name }}
+          </option>
+        </select>
+        <br />
+
+        <select name="" id="" formControlName="village">
+          <option value="">Phường/Xã</option>
+          <option value="" *ngFor="let village of villages" [value]="village.name">
+            {{ village.name }}
+          </option>
+        </select>
+
+      <br />
+      <h2 class="mg-t">Phương Thức Thanh Toán</h2>
+      <div class="checkbox-item">
+        <div>
+          <h3 class="content-tt vt-1">Thanh toán khi nhận hàng</h3>
+          <input type="radio" />
+        </div>
+        <div>
+          <h3 class="content-tt">Thanh toán bằng thẻ ngân hàng</h3>
+          <input type="radio" />
+        </div>
+      </div>
     </div>
-</div>
+
+    <div class="container-right">
+       <div>
+        <ul>
+          <div class="title">Sản Phẩm</div>
+         <div class="line"></div>
+        <div class="bd" *ngFor="let product of productCart">
+         <li class="list-item">
+           <span class="title-1" >{{product.ShoeName}}</span>
+           <span class="title-1-1" >{{product.price| currency:'VND':''}}VND</span>
+         </li>
+         <li class="list-item">
+           <span class="title-1-2">{{product.size}}</span>
+           <span class="title-1-3" >x{{product.quantity}}</span>
+         </li>
+         <div class="line"></div>
+        </div>
+         <div class="title">Tổng tiền :{{total |currency:'VND':''}} VND</div>
+         <div class="line"></div>
+         <button class="button-all" (click)="submitOrder()">Thanh Toán</button>
+         <button class="button-all button-all-item">Quay lại</button>
+       </ul>
+       </div>
+    </div>
+  </div>
+</form>

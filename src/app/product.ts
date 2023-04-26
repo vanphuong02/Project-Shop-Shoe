@@ -7,5 +7,6 @@ export interface Product {
     size: number[],
     quantity: number
     gender: string,
-    img: string
+    img: string,
+
 }

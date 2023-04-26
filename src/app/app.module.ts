@@ -18,6 +18,14 @@ import { FilterPipe } from './shares/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ErrorComponent } from './error/error.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
+import { AllProductOrderComponent } from './purchase-order/all-product-order/all-product-order.component';
+import { PendingApprovalComponent } from './purchase-order/pending-approval/pending-approval.component';
+import { CompleteComponent } from './purchase-order/complete/complete.component';
+import { RejectComponent } from './purchase-order/reject/reject.component';
+import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
 
 
 
@@ -36,6 +44,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NavbarComponent,
     OrderStatusComponent,
     FilterPipe,
+    ErrorComponent,
+    AdminHomeComponent,
+    PurchaseOrderComponent,
+    AllProductOrderComponent,
+    PendingApprovalComponent,
+    CompleteComponent,
+    RejectComponent,
+    HistoryOrderComponent,
 
   ],
   imports: [
