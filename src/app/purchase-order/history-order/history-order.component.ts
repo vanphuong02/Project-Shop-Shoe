@@ -9,19 +9,19 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HistoryOrderComponent implements OnInit{
   idUser!:number
-  infOrder !: ShipInformation;
+  infOrder:ShipInformation[]=[];
   constructor(private purchase : PurchaseOrderService , private cookieService : CookieService){}
   ngOnInit(){
    // console.log("idUser:",this.cookieService.get('user'));
     this.idUser = + this.cookieService.get('user')
     this.purchase.getHistory(this.idUser).subscribe(res =>{
-        this.infOrder = res
+      this.infOrder = res
         // if(this.infOrder.status == 2 || this.infOrder.status == -1)
         //   {
         //     this.infOrder = res
         //     console.log("inf status:",this.infOrder);
         //   }
-          console.log("inf status:",this.infOrder);
+        //console.log("inf status:",this.infOrder[0].status);
      })
   }
 }
