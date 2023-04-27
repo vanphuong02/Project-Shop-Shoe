@@ -13,8 +13,8 @@ export class PendingApprovalComponent {
   idUser !:number
   constructor(private purchase : PurchaseOrderService , private cookieService : CookieService){}
   ngOnInit(){
-    this.idUser = + this.cookieService.get('user')
-    this.purchase.getOrder(this.idUser).subscribe(res =>{
+    const user = JSON.parse( this.cookieService.get('user'))
+    this.purchase.getOrder(user.id).subscribe(res =>{
         this.infOrder = res
       //  console.log("allProductpending:", this.infOrder);
      })

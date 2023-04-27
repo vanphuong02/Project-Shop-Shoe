@@ -19,9 +19,8 @@ export class AllProductOrderComponent {
              ){}
   ngOnInit(){
    // console.log("idUser:",this.cookieService.get('user'));
-
-     this.idUser = + this.cookieService.get('user')
-    this.purchase.getOrder(this.idUser).subscribe(res =>{
+   const user = JSON.parse( this.cookieService.get('user'))
+    this.purchase.getOrder(user.id).subscribe(res =>{
         this.infOrder = res
        // console.log("allProductiduser:", this.infOrder);
      })

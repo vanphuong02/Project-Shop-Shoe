@@ -1,36 +1,51 @@
-<div class="all">
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th>Tên Giày</th>
-                <th>Hình ảnh</th>
-                <th>Giá</th>
-                <th>Size</th>
-                <th>Số lượng</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let card of product; let i = index">
-                <td class="table-name">{{card.ShoeName}}</td>
-                <td><img class="table-img" src="{{card.img}}"></td>
-                <td class="table-price">{{card.price |currency:'VND':'' }} VND</td>
-                <td>{{card.size}}</td>
-                <td>{{card.quantity}}</td>
-                <td><button class="btn" (click)="deleteOne(i)">Xoá </button></td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="removeall">
-        <button class="removeall-item" (click)="removeall()">Xoá tất cả</button>
-        <button class="black" routerLink="/Product/product-list">Quay lại mua hàng</button>
-    </div>
-    <div class="total">
-        <form class="total-item">
-            <div class="order">Đơn Hàng
-                <div class="linee"></div>
-            </div>
-            <div class="total-price">Tổng tiền: {{total |currency:'VND':''}}VND</div>
-            <button class="button-total" (click)="continuetopay()" >Tiếp Tục thanh toán</button>
-        </form>
-    </div>
+<div class="all" [ngSwitch]="switchcart">
+
+  <div *ngSwitchCase="'localCart'">
+
+      <table class="content-table">
+          <thead>
+              <tr>
+                  <th>Tên Giày</th>
+                  <th>Hình ảnh</th>
+                  <th>Giá</th>
+                  <th>Size</th>
+                  <th>Số lượng</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let card of product; let i = index">
+                  <td class="table-name">{{card.ShoeName}}</td>
+                  <td><img class="table-img" src="{{card.img}}"></td>
+                  <td class="table-price">{{card.price |currency:'VND':'' }} VND</td>
+                  <td>{{card.size}}</td>
+                  <td>{{card.quantity}}</td>
+                  <td><button class="btn" (click)="deleteOne(i)">Xoá </button></td>
+
+              </tr>
+          </tbody>
+      </table>
+      <div class="removeall">
+          <button class="removeall-item" (click)="removeall()">Xoá tất cả</button>
+
+          <button class="black" routerLink="/Product/product-list">Quay lại mua hàng</button>
+      </div>
+      <div class="total">
+          <form class="total-item">
+              <div class="order">Đơn Hàng
+                  <div class="linee"></div>
+              </div>
+              <div class="total-price">Tổng tiền: {{total |currency:'VND':''}}VND</div>
+              <button class="button-total" (click)="continuetopay()">Tiếp Tục thanh toán</button>
+
+          </form>
+      </div>
+  </div>
+
+  <div class="swich" *ngSwitchCase="'default'">
+      <div class="button-swich">
+          <h3>Bạn chưa có hàng trong giỏ hàng vui lòng quay lại mua hàng</h3>
+      </div>
+      <button class="button-swich-item" routerLink="/Product/product-list">Quay lại mua hàng</button>
+  </div>
+</div>

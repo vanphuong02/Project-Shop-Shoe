@@ -1,43 +1,74 @@
-.header {
-    background-color: #080808;
-    height: 30px;
-    color: #fff;
-    padding: 20px;
+  .header {
+      background-color: #080808;
+      height: 30px;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Times;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 999;
+
+  }
+
+  .h1-item {
+      font-size: 20px;
+      margin-left: 86px;
+  }
+
+  .h1-item:hover {
+      color: orange;
+      cursor: pointer;
+  }
+
+
+  .header-item li {
+      display: inline-block;
+      margin-left: 25px;
+      line-height: 40px;
+  }
+
+  .header-item li a {
+      color: #fff;
+      text-decoration: none;
+  }
+
+  .header-item li a:hover {
+      color: orange;
+  }
+  .custom-dialog-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    font-family: Times;
-    position: fixed;
-    top: 0;
-    bottom: 0;
+    height: 100%;
+    margin-top: 60px;
+  }
+
+  .account {
+    position: relative;
+  }
+
+  .sub-account {
+    position: absolute;
+    top: 16px;
     right: 0;
-    left: 0;
-    z-index: 999;
+    width: 120px;
+    z-index: 10000;
+    background-color: #ccc;
+    border-radius: 4px;
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.8);
+    display: none;
+  }
 
-}
-
-.h1-item {
-    font-size: 20px;
-    margin-left: 86px;
-}
-
-.h1-item:hover {
-    color: orange;
-    cursor: pointer;
-}
-
-
-.header-item li {
-    display: inline-block;
-    margin-left: 25px;
-    line-height: 40px;
-}
-
-.header-item li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.header-item li a:hover {
-    color: orange;
-}
+  .account:hover .sub-account {
+    display: block;
+  }
+  .sub-item-account {
+    color: red;
+    margin-top: 0px;
+  }

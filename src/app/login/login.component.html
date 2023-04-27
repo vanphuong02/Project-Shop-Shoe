@@ -1,25 +1,29 @@
+<!-- (click)="closeLogin($event)" -->
+ <div class="wrapper">
+  <div class="container" >
+    <h1>Đăng nhập</h1>
+      <div class="checkexit">
+        <form  [formGroup]="loginForm" >
+          <div class="form-control">
+            <label for="username">Tài khoản:</label>
+            <input
+                type="text" formControlName="username"
+            />
+          </div>
 
-<div class="container">
-  <h1>Đăng nhập</h1>
-  <form  [formGroup]="loginForm" >
-    <div class="form-control">
-      <label for="username">Tài khoản:</label>
-      <input
-          type="text" formControlName="username"
-      />
-    </div>
+          <div class="form-control">
+            <label for="password">Mật khẩu:</label>
+          <input
+          type="password" formControlName="password"
+          />
+          </div>
+          <div *ngIf="loginForm.valid">
+            <div *ngIf="err === true" style="color: red;">Thông tin đăng nhập không chính xác</div>
+           </div>
+          <button class="btn"type="submit" (click)="onSubmit()" >Đăng nhập</button>
+          <div class="mg-t"><a >Bạn chưa có tài khoản? <button (click)="register()">Đăng ký</button></a></div>
+        </form>
+      </div>
+  </div>
 
-    <div class="form-control">
-      <label for="password">Mật khẩu:</label>
-    <input
-    type="password" formControlName="password"
-    />
-    </div>
-    <div *ngIf="loginForm.valid">
-      <div *ngIf="err === true" style="color: red;">Thông tin đăng nhập không chính xác</div>
-     </div>
-    <button class="btn"type="submit" (click)="onSubmit()" >Đăng nhập</button>
-    <div class="mg-t"><a >Bạn chưa có tài khoản? <a routerLink="/register">Đăng ký</a></a></div>
-  </form>
-
-</div>
+ </div>

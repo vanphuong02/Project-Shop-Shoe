@@ -4,7 +4,8 @@ import { ColorService } from 'src/app/services/color.service';
 import { query } from '@angular/animations';
 import { Product } from 'src/app/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,19 +16,17 @@ export class ProductDetailComponent implements OnInit {
   product: undefined | Product;
   number = 1
   selectedOption: any;
-  constructor(
-     private detail: ColorService,
-     private router: ActivatedRoute,
-     private routerProdcut: Router,
-     private cookkieServer : CookieService) { }
+  submitAttempted: boolean = false;
+  private productc: Product[] = [];
+
+  constructor(private detail: ColorService, private router: ActivatedRoute, private http: HttpClient, private routerProdcut: Router) {
+  }
+
 
   ngOnInit(): void {
-     this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
-      console.log("res:",res);
-
+    let productid = this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
       this.product = res
     })
-
   }
   handerclickplus() {
     if (this.number < 20) {
@@ -41,39 +40,36 @@ export class ProductDetailComponent implements OnInit {
   }
   AddToCart() {
     if (this.product) {
-      this.product.quantity = this.number;
-      if (this.cookkieServer.get('user')) {
-        this.detail.localAddToCart({ ...this.product, size: this.selectedOption });
+      this.submitAttempted = true;
+      if (!this.selectedOption) {
+        return;
       }
+      this.product.quantity = this.number;
+      this.detail.postToCart({ ...this.product, size: this.selectedOption })
+        .subscribe(response => {
+          console.log(response); // log the response from the server
+        }, error => {
+          console.log(error); // log any errors that occurred
+        });
       console.log(this.product);
     }
-
   }
+
   AddToPay() {
     if (this.product) {
-      this.product.quantity = this.number;
-      // this.product.size = this.selectedOption
-      if (this.cookkieServer.get('user')) {
-        this.detail.localAddToCart({ ...this.product, size: this.selectedOption });
+      this.submitAttempted = true;
+      if (!this.selectedOption) {
+        return;
       }
-
-
+      this.product.quantity = this.number;
+      this.detail.postToPay({ ...this.product, size: this.selectedOption })
+        .subscribe(response => {
+          console.log(response);
+          this.routerProdcut.navigate(['/cart']);
+        }, error => {
+          console.log(error);
+        });
       console.log(this.product);
-      // if (sessionStorage.getItem('user')) {
-      //   this.detail.localAddToCart(this.product)
-      // }
     }
-    this.routerProdcut.navigate(['/cart'])
   }
-  //   let cartData = sessionStorage.getItem('localCart')
-  //   if (productid && cartData) {
-  //     let items = JSON.parse(cartData);
-  //     items = items.filter((item: any) => productid === item.id.toString())
-  //     if (items.length) {
-  //       this.removeCart = true
-  //     } else {
-  //       this.removeCart = false
-  //     }
-  //   }
-  // }
 }

@@ -13,8 +13,8 @@ export class HistoryOrderComponent implements OnInit{
   constructor(private purchase : PurchaseOrderService , private cookieService : CookieService){}
   ngOnInit(){
    // console.log("idUser:",this.cookieService.get('user'));
-    this.idUser = + this.cookieService.get('user')
-    this.purchase.getHistory(this.idUser).subscribe(res =>{
+   const user = JSON.parse( this.cookieService.get('user'))
+    this.purchase.getHistory(user.id).subscribe(res =>{
       this.infOrder = res
         // if(this.infOrder.status == 2 || this.infOrder.status == -1)
         //   {

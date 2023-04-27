@@ -26,7 +26,7 @@ import { PendingApprovalComponent } from './purchase-order/pending-approval/pend
 import { CompleteComponent } from './purchase-order/complete/complete.component';
 import { RejectComponent } from './purchase-order/reject/reject.component';
 import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -61,8 +61,8 @@ import { HistoryOrderComponent } from './purchase-order/history-order/history-or
     FormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

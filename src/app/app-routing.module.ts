@@ -20,7 +20,7 @@ import { PendingApprovalComponent } from './purchase-order/pending-approval/pend
 import { RejectComponent } from './purchase-order/reject/reject.component';
 import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+  {path:'',component:HomeComponent},
   {path:'home',component:HomeComponent},
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
