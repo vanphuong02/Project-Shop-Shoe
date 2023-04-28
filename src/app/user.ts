@@ -3,4 +3,6 @@ export interface User {
   fullName : string;
   sodt: number;
   username : string;
+  password : string;
+  jurisdiction: number
 }

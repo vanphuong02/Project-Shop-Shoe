@@ -41,8 +41,8 @@ login() {
 }
 logout(){
    this.cookieService.deleteAll('user')
+   this.user.setNameLogin(this.name)
    this.router.navigate(['/home'])
-   location.reload
 }
 }
 

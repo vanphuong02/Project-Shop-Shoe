@@ -11,9 +11,8 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
-        if(this.cookieService.check('admin') && this.cookieService.get('admin') === 'admin'){
+        if(this.cookieService.check('admin') == true){
           console.log(this.cookieService.get('admin'));
-
             return true
         }
         else{

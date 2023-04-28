@@ -30,7 +30,6 @@
   .header-item li {
       display: inline-block;
       margin-left: 25px;
-      line-height: 40px;
   }
 
   .header-item li a {
@@ -69,6 +68,11 @@
     display: block;
   }
   .sub-item-account {
-    color: red;
     margin-top: 0px;
   }
+.btn{
+   background: #080808;
+   color:#fff;
+   border: none;
+   cursor: pointer;
+}
