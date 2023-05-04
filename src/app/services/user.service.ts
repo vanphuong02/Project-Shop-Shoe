@@ -13,8 +13,8 @@ export class UserService {
 getList() :Observable<User[]>{
     return this.http.get<User[]>('https://644732497bb84f5a3e39d8b7.mockapi.io/users')
 }
-add(data: any):Observable<any>{
-   return this.http.post<any>('https://644732497bb84f5a3e39d8b7.mockapi.io/users',data)
+add(data: any):Observable<User[]>{
+   return this.http.post<User[]>('https://644732497bb84f5a3e39d8b7.mockapi.io/users',data)
 }
 login(username:string , password: string):Observable<any>{
     return this.http.get<any>(`https://644732497bb84f5a3e39d8b7.mockapi.io/users?username=${username}&password=${password}`)

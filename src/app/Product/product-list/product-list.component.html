@@ -1,12 +1,9 @@
-<!-- <button (click)="searchNu()">Nữ</button>
-    <button (click)="searchNam()">Nam</button> -->
-<!-- routerLink="Product/product-detail/{{item.id}}" -->
 <div class="fs">
     <div class="product-list"
         *ngFor="let item of products | paginate:{itemsPerPage:12,currentPage:p} |filter:searchkey:'ShoeName'"
         routerLink="/Product/product-detail/{{item.id}}">
         <div class="product-item">
-            <img routerLink="/Product/product-detail/{{item.id}}" src="{{ item.img }}" alt="" />
+            <img class="img-item" routerLink="/Product/product-detail/{{item.id}}" src="{{ item.img }}" alt="" />
             <div class="product-details">
                 <a routerLink="/Product/product-detail/{{item.id}}">
                     <h3 class="product-name">{{ item.ShoeName }}</h3>

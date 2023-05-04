@@ -29,7 +29,7 @@ const routes: Routes = [
     { path:'product-detail/:id',component:ProductDetailComponent},
     { path:'product-filter',component:ProductFilterComponent}
   ]},
-  {path:'order-status',component:OrderStatusComponent},
+  {path:'order-status',canActivate:[AuthGuard],component:OrderStatusComponent},
   {path:'homeadmin',canActivate:[AuthGuard],component:AdminHomeComponent},
   {path:'cart',component:CartComponent},
   {path:'purchase-order',component:PurchaseOrderComponent},

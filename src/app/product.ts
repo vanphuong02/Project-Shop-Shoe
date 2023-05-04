@@ -8,5 +8,5 @@ export interface Product {
     quantity: number
     gender: string,
     img: string,
-
+   idUser: number,
 }

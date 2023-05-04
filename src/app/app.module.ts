@@ -27,6 +27,7 @@ import { CompleteComponent } from './purchase-order/complete/complete.component'
 import { RejectComponent } from './purchase-order/reject/reject.component';
 import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LimitToPipePipe } from './limit-to.pipe.pipe';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CompleteComponent,
     RejectComponent,
     HistoryOrderComponent,
+    LimitToPipePipe,
 
   ],
   imports: [

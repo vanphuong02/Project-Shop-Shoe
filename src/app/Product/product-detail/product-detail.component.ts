@@ -6,6 +6,7 @@ import { Product } from 'src/app/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,10 +17,16 @@ export class ProductDetailComponent implements OnInit {
   product: undefined | Product;
   number = 1
   selectedOption: any;
+  idUser !: any;
   submitAttempted: boolean = false;
   private productc: Product[] = [];
 
-  constructor(private detail: ColorService, private router: ActivatedRoute, private http: HttpClient, private routerProdcut: Router) {
+  constructor(private detail: ColorService,
+     private router: ActivatedRoute,
+     private http: HttpClient,
+     private routerProdcut: Router,
+     private cookieService: CookieService,
+     ) {
   }
 
 
@@ -39,22 +46,32 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   AddToCart() {
+    const user = this.cookieService.get('user')
+    if (user) {
+       this.idUser = JSON.parse(user)
+    }
     if (this.product) {
       this.submitAttempted = true;
       if (!this.selectedOption) {
         return;
       }
       this.product.quantity = this.number;
-      this.detail.postToCart({ ...this.product, size: this.selectedOption })
+      this.detail.postToCart({ ...this.product, size: this.selectedOption,idUser:this.idUser.id})
         .subscribe(response => {
-          console.log(response); // log the response from the server
+          console.log(response);
+
+
         }, error => {
-          console.log(error); // log any errors that occurred
+          console.log(error);
         });
       console.log(this.product);
     }
-  }
+    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    let cartItem = { ...this.product, size: this.selectedOption };
+    cartItems.push(cartItem);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
+  }
   AddToPay() {
     if (this.product) {
       this.submitAttempted = true;
@@ -71,5 +88,9 @@ export class ProductDetailComponent implements OnInit {
         });
       console.log(this.product);
     }
+    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    let cartItem = { ...this.product, size: this.selectedOption };
+    cartItems.push(cartItem);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 }

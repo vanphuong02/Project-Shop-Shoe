@@ -1,29 +1,51 @@
 <!-- (click)="closeLogin($event)" -->
- <div class="wrapper">
-  <div class="container" >
+<div class="wrapper">
+  <div class="container">
     <h1>Đăng nhập</h1>
-      <div class="checkexit">
-        <form  [formGroup]="loginForm" >
-          <div class="form-control">
-            <label for="username">Tài khoản:</label>
-            <input
-                type="text" formControlName="username"
-            />
+    <div class="checkexit">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+          <label for="username">Tài khoản:</label>
+          <input type="text" formControlName="username" class="input" />
+          <div
+            *ngIf="
+              loginForm.controls['username'].invalid &&
+              (loginForm.controls['username'].dirty ||
+                loginForm.controls['username'].touched)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="loginForm.controls['username'].hasError('required')"
+              >Vui lòng nhập tài khoản</small
+            >
           </div>
+        </div>
 
-          <div class="form-control">
-            <label for="password">Mật khẩu:</label>
-          <input
-          type="password" formControlName="password"
-          />
+        <div class="form-control">
+          <label for="password">Mật khẩu:</label>
+          <input type="password" formControlName="password" class="input" />
+          <div
+            *ngIf="
+              loginForm.controls['password'].invalid &&
+              (loginForm.controls['password'].dirty ||
+                loginForm.controls['password'].touched)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="loginForm.controls['password'].hasError('required')"
+              >Vui lòng nhập mật khẩu</small>
           </div>
-          <div *ngIf="loginForm.valid">
-            <div *ngIf="err === true" style="color: red;">Thông tin đăng nhập không chính xác</div>
-           </div>
-          <button class="btn"type="submit" (click)="onSubmit()" >Đăng nhập</button>
-          <div class="mg-t"><a >Bạn chưa có tài khoản? <button (click)="register()">Đăng ký</button></a></div>
-        </form>
-      </div>
+          <div *ngIf="err === true" style="color: red;">Thông tin đăng nhập không chính xác</div>
+        </div>
+
+        <button class="btn" type="submit">Đăng nhập</button>
+        <div class="mg-t">
+          <a>Bạn chưa có tài khoản? <button (click)="register()">Đăng ký</button></a>
+        </div>
+      </form>
+    </div>
   </div>
+</div>
 
- </div>

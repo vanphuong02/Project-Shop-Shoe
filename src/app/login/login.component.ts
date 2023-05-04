@@ -1,20 +1,15 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
-import { Router } from "@angular/router";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { UserService } from "../services/user.service";
-import { HttpClient } from "@angular/common/http";
-import { style } from "@angular/animations";
-import { CookieService } from "ngx-cookie-service";
-import { MatDialog } from "@angular/material/dialog";
-import { RegisterComponent } from "../register/register.component";
-import * as bcrypt from "bcryptjs";
-import { User } from "../user";
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
+import * as bcrypt from 'bcryptjs';
+import { User } from '../user';
+import ValidatorForm from '../validationForm';
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -24,9 +19,8 @@ export class LoginComponent {
   err = false;
   @ViewChild("checkexit") modalContent!: ElementRef;
   loginForm = this.fb.group({
-    username: [""],
-    password: [""],
-    //  jurisdiction:['']
+    username: ["",Validators.required],
+    password: ["",Validators.required],
   });
   constructor(
     private route: Router,
@@ -37,14 +31,16 @@ export class LoginComponent {
     private matdialog: MatDialog
   ) {}
   onSubmit(): void {
+    if(this.loginForm.valid){
+    // kiểm tra tài khoản user
     this.userd.getList().subscribe((res) => {
       const user = res.find((us: User) => {
         return (us.username ===
           this.loginForm.value.username &&
           bcrypt.compareSync(this.loginForm.value.password ?? "", us.password)) && us.jurisdiction === 0;
       });
-
-      const admin = res.find((us: any) => {
+    // kiểm tra tài khoản admin
+      const admin = res.find((us: User) => {
         return (us.username ===
         this.loginForm.value.username &&
         bcrypt.compareSync(this.loginForm.value.password ?? "", us.password))
@@ -59,14 +55,18 @@ export class LoginComponent {
         this.userd.setNameLogin(user.username);
         this.matdialog.closeAll();
       }
-      // else if (admin) {
-      //   this.cookieService.set('admin', "admin")
-      //   this.route.navigate(['/homeadmin'])
-      // }
+      else if (admin) {
+        this.cookieService.set('admin', "admin")
+        this.route.navigate(['/homeadmin'])
+      }
       else {
         this.err = true;
       }
     });
+  }
+   else{
+    ValidatorForm.validateAllFormFileds(this.loginForm)
+   }
   }
   register() {
     this.matdialog.closeAll();

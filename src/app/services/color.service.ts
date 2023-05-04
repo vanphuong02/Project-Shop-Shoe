@@ -8,7 +8,8 @@ import { Product } from '../product';
 })
 export class ColorService {
   cartItems = new BehaviorSubject<Product[]>([]);
-  // cartData = new EventEmitter<Product[] | []>();
+  cartData = new EventEmitter<Product[] | []>();
+  cartPay = new EventEmitter<Product[] | []>();
   public search = new BehaviorSubject<string>("");
 
   constructor(private http: HttpClient) { }
@@ -39,8 +40,8 @@ export class ColorService {
       })
     );
   }
-  getCartItems(): Observable<any> {
-    return this.http.get('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart');
+  getCartItems(idUser:number): Observable<any> {
+    return this.http.get(`https://64488ed3b88a78a8f0ef2838.mockapi.io/cart?idUser=${idUser}`);
   }
   deleteCartItem(id: number): Observable<any> {
     return this.http.delete('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart/' + id).pipe(
@@ -50,5 +51,17 @@ export class ColorService {
         this.cartItems.next(newCartItems);
       })
     );
+  }
+  localAddToCart(data: Product) {
+    let cartData = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    cartData = Array.isArray(cartData) ? cartData.concat(data) : [cartData, data];
+    localStorage.setItem('cartItems', JSON.stringify(cartData));
+    this.cartData.emit(cartData);
+  }
+  localAddToPay(data: Product) {
+    let cartPay = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    cartPay = Array.isArray(cartPay) ? cartPay.concat(data) : [cartPay, data];
+    localStorage.setItem('cartItems', JSON.stringify(cartPay));
+    this.cartPay.emit(cartPay);
   }
 }

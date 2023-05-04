@@ -56,11 +56,9 @@ export class OrderStatusComponent implements OnInit {
     private cookieService : CookieService,
     ){}
   ngOnInit(){
-    // lấy thông tin người dùng từ session
-    // const currentUser = JSON.parse(sessionStorage.getItem('user') || '{}');
-    // const {id, fullName , sodt  ,username} = currentUser
-    // this.user = {id, fullName , sodt , username}
-    // console.log(this.user);
+
+    // const itemCart = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    // console.log("itemCart: " , itemCart);
 
     this.getProductCart()
     // lấy danh sách tỉnh thành phố
@@ -82,12 +80,12 @@ export class OrderStatusComponent implements OnInit {
   submitOrder(){
     // lấy name thành phố , huyện
     const nameCity = this.citys.find(city => city.idProvince === this.shipInformation.value.city)
-    const itemCart = JSON.parse(sessionStorage.getItem('localCart') || '[]');
-    const id = JSON.parse(this.cookieService.get('user') || '');
+    const itemCart = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const idUser = JSON.parse(this.cookieService.get('user') || '');
 
     this.districCity = this.districs.find(distric => distric.idDistrict === this.shipInformation.value.distric)
         const shipInf = {
-        idUser : id,
+        idUser : idUser.id,
         fullname: this.shipInformation.value.fullName,
         sodt: this.shipInformation.value.sodt,
         address: this.shipInformation.value.address,
@@ -98,12 +96,10 @@ export class OrderStatusComponent implements OnInit {
         dateCreate:this.shipInformation.value.dateCreate,
         status:this.shipInformation.value.status,
     }
-    console.log("cart:",itemCart);
-
      this.order.add(shipInf).subscribe(res =>{
        //  console.log("add susscess");
-     })
      this.router.navigate(['/all-product-order'])
+     })
   }
   // tổng tiền
   getTotal(items: Product[]): number {
@@ -111,7 +107,7 @@ export class OrderStatusComponent implements OnInit {
   }
   // lấy sản phẩm trong session
   getProductCart(){
-    const itemCart = sessionStorage.getItem('localCart');
+    const itemCart = localStorage.getItem('cartItems');
      if(itemCart != null){
       this.productCart = JSON.parse(itemCart) as Product[];
       this.total = this.getTotal(this.productCart);

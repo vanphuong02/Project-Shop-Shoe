@@ -27,22 +27,30 @@ export class HeaderComponent implements OnInit {
   ) {}
 
 ngOnInit() {
-  this.product.getCartItems().subscribe((cartItems: Product[] | []) => {
+  const namecookie = this.cookieService.get('user')
+
+  this.product.getCartItems(+JSON.parse(namecookie).id).subscribe((cartItems: Product[] | []) => {
     this.cartItems = cartItems.length;
   });
 
-  this.user.getNameLogin().subscribe(name => {
+  if(namecookie){
+   this.user.getNameLogin().subscribe(name => {
     this.nameLogin = name
   })
+  const parseNameCookie = JSON.parse(namecookie)
+  this.user.setNameLogin(parseNameCookie.username)
+  }
 }
 
 login() {
+
   const dialogRef = this.dialog.open(LoginComponent);
 }
 logout(){
    this.cookieService.deleteAll('user')
    this.user.setNameLogin(this.name)
    this.router.navigate(['/home'])
+   this.cartItems = 0;
 }
 }
 

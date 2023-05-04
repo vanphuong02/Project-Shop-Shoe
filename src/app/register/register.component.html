@@ -1,48 +1,62 @@
 <div class="wrapper">
   <div class="container">
     <h1>Đăng ký</h1>
-    <form  [formGroup]="userForm" method="post" >
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" method="post">
       <div class="form-control">
-        <label for="username">Họ tên:</label>
-        <input
-            type="text" formControlName="fullName"
-        />
+        <label for="fullName">Họ tên:</label>
+        <input type="text" formControlName="fullName" class="input" />
       </div>
-      <small class="text-danger" *ngIf="userForm.controls['fullName'].dirty && userForm.hasError('required','fullName')">Vui lòng nhập họ tên</small>
-      <div class="form-control">
-        <label for="username">Tài khoản:</label>
-        <input
-            type="text" formControlName="username"
-        />
+      <div *ngIf="
+          userForm.controls['fullName'].invalid &&
+          (userForm.controls['fullName'].dirty ||
+            userForm.controls['fullName'].touched)
+        ">
+        <small class="text-danger" *ngIf="userForm.controls['fullName'].hasError('required')">Vui lòng nhập họ
+          tên</small>
       </div>
-      <small class="text-danger" *ngIf="userForm.controls['username'].dirty && userForm.hasError('required','username')">Vui lòng nhập tài khoản</small>
 
       <div class="form-control">
         <label for="email">Email:</label>
-        <input
-            type="text" formControlName="email"
-        />
+        <input type="email" formControlName="email" class="input" />
       </div>
-      <small class="text-danger" *ngIf="userForm.controls['email'].dirty && userForm.hasError('required','email')">Vui lòng nhập email</small>
+      <div *ngIf="
+          userForm.controls['email'].invalid &&
+          (userForm.controls['email'].dirty ||
+            userForm.controls['email'].touched)
+        ">
+        <small class="text-danger" *ngIf="userForm.controls['email'].hasError('required')">Vui lòng nhập email</small>
+        <small class="text-danger" *ngIf="userForm.controls['email'].hasError('email')">Email không hợp lệ</small>
+      </div>
 
       <div class="form-control">
-        <label for="sodt">Số điện thoại:</label>
-        <input
-            type="text" formControlName="sodt"
-        />
+        <label for="username">Tài khoản:</label>
+        <input type="text" formControlName="username" class="input" />
       </div>
-      <small class="text-danger" *ngIf="userForm.controls['sodt'].dirty && userForm.hasError('required','sodt')">Vui lòng nhập tài khoản</small>
+      <div *ngIf="
+          userForm.controls['username'].invalid &&
+          (userForm.controls['username'].dirty ||
+            userForm.controls['username'].touched)
+        ">
+        <small class="text-danger" *ngIf="userForm.controls['username'].hasError('required')">Vui lòng nhập tài
+          khoản</small>
+      </div>
 
       <div class="form-control">
         <label for="password">Mật khẩu:</label>
-      <input
-      type="password" formControlName="password"
-      />
+        <input type="password" formControlName="password" class="input" />
       </div>
-      <small class="text-danger" *ngIf="userForm.controls['password'].dirty && userForm.hasError('required','password')">Vui lòng nhập mật khẩu</small>
-      <button class="btn" type="submit" (click)="onSubmit()" routerLink="/login">Đăng ký</button>
-      <div class="mg-t"><a >Bạn đã có tài khoản? <a routerLink="/login">Đăng nhập</a></a></div>
+      <div *ngIf="
+          userForm.controls['password'].invalid &&
+          (userForm.controls['password'].dirty ||
+            userForm.controls['password'].touched)
+        ">
+        <small class="text-danger" *ngIf="userForm.controls['password'].hasError('required')">Vui lòng nhập mật khẩu</small>
+        <small class="text-danger" *ngIf="userForm.controls['password'].hasError('minlength')">Mật khẩu chứa ít nhất 8 ký tự</small>
+      </div>
+        <button class="btn" type="submit">Đăng ký</button>
+      <div class="mg-t">
+        <a>Bạn đã có tài khoản? <button (click)="login()">Đăng nhập</button></a>
+      </div>
     </form>
   </div>
-
 </div>

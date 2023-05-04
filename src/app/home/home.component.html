@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>W3.CSS Template</title>
+    <title>Shoe Store</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -22,67 +22,24 @@
     </header>
 
     <!-- Page content -->
-    <div class="w3-content w3-padding" style="max-width:1564px">
-
-        <!-- Project Section -->
-        <div class="w3-container w3-padding-32" id="selling">
-            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Best Selling</h3>
-        </div>
-
-        <div class="w3-row-padding">
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <a routerLink=""><img src="./assets/images/shoeshome.jpg" alt="House" style="width:100%"></a>
-                </div>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:100%">
-                </div>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:100%">
-                </div>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:100%">
-                </div>
-            </div>
-        </div>
-
-        <div class="w3-row-padding">
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:99%">
-                </div>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:99%">
-                </div>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:99%">
-                </div>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container">
-                    <div class="w3-display-topleft w3-black w3-padding">Shoes Name</div>
-                    <img src="./assets/images/shoeshome.jpg" alt="House" style="width:99%">
-                </div>
-            </div>
-        </div>
-
+    <div class="page">
+      <div class="product-list"
+          *ngFor="let item of products|limitToPipe:8"
+          routerLink="/Product/product-detail/{{item.id}}">
+          <div class="product-item">
+              <img routerLink="/Product/product-detail/{{item.id}}" src="{{ item.img }}" alt="" />
+              <div class="product-details">
+                  <a routerLink="/Product/product-detail/{{item.id}}">
+                      <h3 class="product-name">{{ item.ShoeName }}</h3>
+                  </a>
+                  <h3>---------------------</h3>
+                  <h3 class="product-color">{{ item.color }}</h3>
+                  <h3 class="product-price">{{ item.price | currency:'VND':'' }} VND</h3>
+                  <h3>{{ item.gender }}</h3>
+              </div>
+          </div>
+      </div>
+    </div>
         <!-- About Section -->
         <div class="w3-container w3-padding-32" id="about">
             <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
@@ -96,21 +53,21 @@
                 <img src="./assets/images/original.jpg" alt="Anh" style="width:100%">
                 <h3>Quyền Anh</h3>
                 <p class="w3-opacity">CEO & Founder</p>
-                <p>CEO nhưng ngủ cả ngày.</p>
+                <!-- <p>CEO nhưng ngủ cả ngày.</p> -->
                 <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
                 <img src="./assets/images/original.jpg" alt="Quý" style="width:100%">
                 <h3>Thiên Quý</h3>
                 <p class="w3-opacity">BrSE</p>
-                <p>Chỉ thích 1 mình bích du mà thôi mãi yêu bích du</p>
+                <!-- <p>Chỉ thích 1 mình bích du mà thôi mãi yêu bích du</p> -->
                 <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
                 <img src="./assets/images/original.jpg" alt="Phương" style="width:100%">
                 <h3>Nguyễn Phương</h3>
                 <p class="w3-opacity">Manager</p>
-                <p>Quản lý chuyên bắt nạt mấy thằng nhân viên.</p>
+                <!-- <p>Quản lý chuyên bắt nạt mấy thằng nhân viên.</p> -->
                 <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
             </div>
         </div>
@@ -133,7 +90,7 @@
         <!-- Image of location/map -->
 
         <!-- End page content -->
-    </div>
+
 
 
     <!-- Footer -->

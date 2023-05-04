@@ -1,22 +1,11 @@
-/* /* * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-}
 
-body {
-	background: linear-gradient(120deg, #3ca7ee, #9b408f);
-	height: 100vh;
-	overflow: hidden;
-} */
 .wrapper {
   position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,12 +13,16 @@ body {
 
 .container {
 	width: 400px;
-	background: white;
-	border-radius: 10px;
-	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+	background: #393646;
+  border-radius: 5px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
   padding: 20px;
+  color: #fff;
 }
-
+.input{
+   background: #F5EBEB!important;
+   border-radius: 4px;
+}
 .container h1 {
 	text-align: center;
 	padding-top: 20px;
@@ -41,8 +34,7 @@ body {
 
 form .form-control {
 	position: relative;
-	border-bottom: 2px solid #adadad;
-	margin: 40px 0;
+	margin: 20px 0;
 }
 
 .form-control input {
@@ -53,13 +45,15 @@ form .form-control {
 	background: none;
 	outline: none;
 }
-
+.text-danger{
+  color: red;
+}
 .btn {
 	margin-top: 20px;
 	width: 100%;
 	height: 50px;
 	border: 1px solid;
-	background: #2691d9;
+	background: #394867;
 	border-radius: 25px;
 	font-size: 18px;
 	color: #e9f4fb;
@@ -72,24 +66,10 @@ form .form-control {
 .btn:hover{
   background-color: #08609a;
 }
-.signup_link {
-	margin: 25px 0;
-	text-align: center;
-	font-size: 16px;
-	color: #666666;
-}
-
-.signup_link a {
-	color: #2691d9;
-	text-decoration: none;
-}
-
-.signup_link a:hover {
-	text-decoration: underline;
-}
 .mg-t{
    margin-top: 20px;
    display: flex;
    text-align: center;
    justify-content: center;
+   cursor: pointer;
 }

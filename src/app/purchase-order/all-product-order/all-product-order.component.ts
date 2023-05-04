@@ -18,6 +18,8 @@ export class AllProductOrderComponent {
               private cookieService : CookieService
              ){}
   ngOnInit(){
+    console.log("á");
+
    // console.log("idUser:",this.cookieService.get('user'));
    const user = JSON.parse( this.cookieService.get('user'))
     this.purchase.getOrder(user.id).subscribe(res =>{
