@@ -1,9 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
-import { CookieService } from 'ngx-cookie-service';
-import { ColorService } from '../services/color.service';
-import { Product } from '../product';
+import { Component, OnInit, Input } from '@angular/core';
+import { Product } from 'src/app/product';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +8,15 @@ import { Product } from '../product';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  dialogRef!: MatDialogRef<LoginComponent>;
-  products : Product[]=[];
-  constructor(private dialog: MatDialog , private cookieServer :CookieService, private list : ColorService) { }
+  products: undefined | Product[];
+  colors: any = [];
 
+  public productlist: any;
+  constructor(private prd: ColorService) { }
   ngOnInit(): void {
-      this.list.getProduct().subscribe(res =>{
-         this.products  = res
-      })
+    this.prd.getProduct().subscribe(res => {
+      this.products = res;
+      console.log(this.products);
+    })
   }
-
-  openLoginDialog() {
-    this.dialogRef = this.dialog.open(LoginComponent);
-  }
-
 }

@@ -63,8 +63,12 @@ export class OrderStatusComponent implements OnInit {
     private routered: ActivatedRoute,
     private used: UserService,
     private cookieService: CookieService,
+<<<<<<< HEAD
     private productOrder: ColorService,
 
+=======
+    private productOrder: ColorService
+>>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
   ) {}
   ngOnInit() {
     this.getProductCart();
@@ -90,7 +94,11 @@ export class OrderStatusComponent implements OnInit {
   submitOrder() {
     // lấy name thành phố , huyện
     const nameCity = this.citys.find(
+<<<<<<< HEAD
       (city) => city.idProvince === this.shipInformation.value.city
+=======
+(city) => city.idProvince === this.shipInformation.value.city
+>>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
     );
     const idUser = JSON.parse(this.cookieService.get("user") || "");
     this.districCity = this.districs.find(
@@ -102,7 +110,11 @@ export class OrderStatusComponent implements OnInit {
 
       const shipInf = {
         idUser: idUser.id,
+<<<<<<< HEAD
         fullName: this.shipInformation.value.fullName,
+=======
+        fullname: this.shipInformation.value.fullName,
+>>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
         sodt: this.shipInformation.value.sodt,
         address: this.shipInformation.value.address,
         city: nameCity?.name,
@@ -117,7 +129,13 @@ export class OrderStatusComponent implements OnInit {
         this.order.add(shipInf).subscribe((res) => {
          this.router.navigate(["/all-product-order"]);
         });
+<<<<<<< HEAD
         this.removeall()
+=======
+        this.order.delete(idUser.id).subscribe((res) => {
+          console.log("delete success");
+       })
+>>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
       }
       else {
         ValidatorForm.validateAllFormFileds(this.shipInformation);
@@ -141,6 +159,7 @@ export class OrderStatusComponent implements OnInit {
       }, 0);
       // console.log("total:",this.total);
     });
+<<<<<<< HEAD
   }
 
   // xóa sản phẩm trong cart
@@ -153,5 +172,10 @@ export class OrderStatusComponent implements OnInit {
         });
       });
     }
+=======
+>>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
+  }
+  deleteProductOrder(id: number) {
+    this.order.delete(id).subscribe((res) => {});
   }
 }

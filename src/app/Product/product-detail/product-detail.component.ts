@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColorService } from 'src/app/services/color.service';
-import { query } from '@angular/animations';
 import { Product } from 'src/app/product';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -14,66 +10,76 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  product: undefined | Product;
-  number = 1
+  product: Product | undefined;
+  number = 1;
   selectedOption: any;
-  idUser !: any;
-  submitAttempted: boolean = false;
-  private productc: Product[] = [];
+  idUser: any;
+  submitAttempted = false;
 
-  constructor(private detail: ColorService,
-     private router: ActivatedRoute,
-     private http: HttpClient,
-     private routerProdcut: Router,
-     private cookieService: CookieService,
-     ) {
-  }
-
+  constructor(
+    private detail: ColorService,
+    private router: ActivatedRoute,
+    private routerProduct: Router,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit(): void {
-    let productid = this.detail.getId(this.router.snapshot.params['id']).subscribe(res => {
-      this.product = res
-    })
+    const productId = this.router.snapshot.params['id'];
+    this.detail.getId(productId).subscribe((res: Product) => {
+      this.product = res;
+    });
   }
-  handerclickplus() {
+
+  handleClickPlus() {
     if (this.number < 20) {
-      this.number = this.number + 1
+      this.number += 1;
     }
   }
-  handerclickminus() {
+
+  handleClickMinus() {
     if (this.number > 1) {
-      this.number = this.number - 1
+      this.number -= 1;
     }
   }
-  AddToCart() {
-    const user = this.cookieService.get('user')
+
+  addToCart() {
+    const user = this.cookieService.get('user');
     if (user) {
-       this.idUser = JSON.parse(user)
+      this.idUser = JSON.parse(user);
     }
+
     if (this.product) {
       this.submitAttempted = true;
       if (!this.selectedOption) {
         return;
       }
       this.product.quantity = this.number;
-      this.detail.postToCart({ ...this.product, size: this.selectedOption,idUser:this.idUser.id})
-        .subscribe(response => {
-          console.log(response);
-
-
-        }, error => {
-          console.log(error);
-        });
+      this.detail
+        .postToCart({ ...this.product, size: this.selectedOption, idUser: this.idUser.id })
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       console.log(this.product);
     }
   }
-  AddToPay() {
+  addToPay() {
+    const user = this.cookieService.get('user');
+    if (user) {
+      this.idUser = JSON.parse(user);
+    }
+
     if (this.product) {
       this.submitAttempted = true;
       if (!this.selectedOption) {
         return;
       }
       this.product.quantity = this.number;
+<<<<<<< HEAD
       this.detail.postToPay({ ...this.product, size: this.selectedOption })
         .subscribe(response => {
           console.log(response);
@@ -81,6 +87,19 @@ export class ProductDetailComponent implements OnInit {
         }, error => {
           console.log(error);
         });
+=======
+      this.detail
+        .postToPay({ ...this.product, size: this.selectedOption, idUser: this.idUser.id })
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      console.log(this.product);
+>>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
     }
   }
 }
