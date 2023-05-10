@@ -67,23 +67,28 @@ export class ProductDetailComponent implements OnInit {
       console.log(this.product);
     }
   }
-
   addToPay() {
+    const user = this.cookieService.get('user');
+    if (user) {
+      this.idUser = JSON.parse(user);
+    }
+
     if (this.product) {
       this.submitAttempted = true;
       if (!this.selectedOption) {
         return;
       }
       this.product.quantity = this.number;
-      this.detail.postToPay({ ...this.product, size: this.selectedOption }).subscribe(
-        (response) => {
-          console.log(response);
-          this.routerProduct.navigate(['/cart']);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      this.detail
+        .postToCart({ ...this.product, size: this.selectedOption, idUser: this.idUser.id })
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       console.log(this.product);
     }
   }
