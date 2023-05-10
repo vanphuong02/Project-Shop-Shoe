@@ -3,7 +3,10 @@
         <div class="img-item"> <img src="{{product.img}}"></div>
     </div>
     <div class="item-total">
-        <div class="inname-item">{{product.ShoeName}}</div>
+
+        <div class="inname-item">
+            {{product.ShoeName}}
+        </div>
         <div class="code-product">
             <strong class="code-product-item"> Mã sản phẩm : {{product.code}}</strong>
         </div>
@@ -11,27 +14,30 @@
         <div class="line"></div>
         <div class="colors">{{product.color}}</div>
         <div class="line"></div>
-        <div class="name-space">
-            <div>
+        <div class="flex-quatity-size">
+            <div class="name-space">
                 <span class="span-name">Size</span>
+                <select name="size" class="opton-em" [(ngModel)]="selectedOption" required>
+                    <option [value]="item" class="option-item" *ngFor="let item of product.size">{{item}}</option>
+                </select>
+                <div *ngIf="!selectedOption && submitAttempted" class="error-message">Bạn chưa chọn size giày</div>
             </div>
-            <select name="size" class="opton-em" [(ngModel)]="selectedOption">
-                <option [value]="item" class="option-item" *ngFor="let item of product.size">{{item}}</option>
-                <div> ban chua chon size</div>
-            </select>
-        </div>
-        <div class="name-number">
-            <span class="span-name">Số Lượng</span>
-            <input class="input-text" type="text" value="{{number}}">
+            <div class="name-number">
+                <span class="span-name">Số Lượng</span>
+                <input class="input-text" value="{{number}}">
+            </div>
             <div class="button-click">
-                <button class="button-click-item" (click)="handerclickplus()">+</button>
-                <button class="button-click-item-down" (click)="handerclickminus()">-</button>
+                <button class="button-click-item" (click)="handleClickPlus()">+</button>
+                <button class="button-click-item-down" (click)="handleClickMinus()">-</button>
             </div>
+
         </div>
+
         <div class="buton-chird">
-            <button class="button-chird-item" (click)="AddToCart()">Thêm Vào Giỏ Hàng</button>
-            <button class="button-chird-item-node" (click)="AddToPay()">Thanh Toán</button>
+            <button class="button-chird-item" (click)="addToCart()">Thêm Vào Giỏ Hàng</button>
+            <button class="button-chird-item-node" (click)="addToPay()">Thanh Toán</button>
         </div>
     </div>
 
 </div>
+<app-footer></app-footer>

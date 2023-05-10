@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
     private card: ColorService,
     private route: Router,
     private cookieService: CookieService
-  ) {}
+  ) { }
   ngOnInit(): void {
     const idUser = JSON.parse(this.cookieService.get("user"));
 
@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
         this.total = 0;
       });
     }
-    let cart = localStorage.removeItem("cartItems");
+    // let cart = localStorage.removeItem("cartItems");
   }
 
   getTotal(items: Product[]): number {
@@ -62,13 +62,13 @@ export class CartComponent implements OnInit {
       }
     });
     // xoa local
-    const cart = JSON.parse(localStorage.getItem('cartItems') || '[]') as Product[];
-    if (cart) {
-      cart.splice(index, 1);
-      localStorage.setItem('cartItems', JSON.stringify(cart));
-      this.product = cart;
-      this.total = this.getTotal(this.product);
-    }
+    // const cart = JSON.parse(localStorage.getItem('cartItems') || '[]') as Product[];
+    // if (cart) {
+    //   cart.splice(index, 1);
+    //   localStorage.setItem('cartItems', JSON.stringify(cart));
+    //   this.product = cart;
+    //   this.total = this.getTotal(this.product);
+    // }
   }
 
   continuetopay() {

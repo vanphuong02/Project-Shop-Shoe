@@ -6,9 +6,17 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class UserService {
+<<<<<<< HEAD
   NameLogin = new BehaviorSubject("");
   NameLoginAdmin = new BehaviorSubject("")
   constructor(private http: HttpClient) { }
+=======
+  id(id: any) {
+    throw new Error('Method not implemented.');
+  }
+  NameLogin = new BehaviorSubject("")
+  constructor(private http : HttpClient) { }
+>>>>>>> df5603a550ba95f0500d3de674e3915428b5ee34
   // các phương thức
   mockapi = 'https://644732497bb84f5a3e39d8b7.mockapi.io/users'
   getList(): Observable<User[]> {

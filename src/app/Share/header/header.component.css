@@ -1,7 +1,7 @@
 .header {
   background-color: #080808;
-  height: 30px;
-  color: #fff;
+  height: 15px;
+  color: #fff;  
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -39,42 +39,45 @@
 
 .header-item li:hover {
   cursor: pointer;
-  color:#E76161;
+  color: #E76161;
 }
+
 .custom-dialog-container {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100%;
-margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 60px;
 }
 
 .account {
-position: relative;
+  position: relative;
 }
 
 .sub-account {
-position: absolute;
-top: 16px;
-right: 0;
-width: 120px;
-z-index: 10000;
-background-color: #ccc;
-border-radius: 4px;
-box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.8);
-display: none;
+  position: absolute;
+  top: 16px;
+  right: 0;
+  width: 120px;
+  z-index: 10000;
+  background-color: #ccc;
+  border-radius: 4px;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.8);
+  display: none;
 }
 
 .account:hover .sub-account {
-display: block;
+  display: block;
 }
+
 .sub-item-account {
-margin-top: 0px;
-color: #000;
+  margin-top: 0px;
+  color: #000;
 }
-.btn{
-background: #080808;
-color:#fff;
-border: none;
-cursor: pointer;
+
+.btn {
+  background: #080808;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
