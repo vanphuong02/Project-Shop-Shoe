@@ -1,15 +1,19 @@
 .header-item {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin: 20px;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     cursor: pointer;
     font-family: sans-serif;
-    margin-top: 70px;
+    margin-top: 40px;
+    padding: 15px;
+    height: 80px;
 }
 
+.linmitind {
+    display: flex;
+}
 
 
 .row {
@@ -19,11 +23,6 @@
 .row a {
     text-decoration: none;
 }
-
-/* .row-item {
-    position: relative;
-    right: 20%;
-} */
 .row-item {
     margin-left: 100px;
 }
@@ -34,16 +33,9 @@
 }
 
 .input-text {
-    position: relative;
-    left: 15%;
     font-size: 24px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: red
-}
-
-.input-text:hover {
-    background-color: blue;
 }
 
 .input-text-chird {
@@ -59,13 +51,13 @@
     margin-right: 25px;
     position: relative;
     right: 17%;
-    font-size: 50px;
+    height: 60px;
 
 }
 
 .line {
     border-right: #e3e2e2 3px solid;
-    margin-top: 4px;
+    margin-top: 28px;
     height: 30px;
     text-decoration: none;
 }
@@ -97,3 +89,4 @@
     text-overflow: ellipsis;
     height: 50px;
 }
+

@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 import { Product } from '../product';
 
 @Injectable({
@@ -8,10 +8,8 @@ import { Product } from '../product';
 })
 export class ColorService {
   cartItems = new BehaviorSubject<Product[]>([]);
-  cartData = new EventEmitter<Product[] | []>();
-  cartPay = new EventEmitter<Product[] | []>();
   public search = new BehaviorSubject<string>("");
-
+  cartItemAdded = new EventEmitter<Product>();
   constructor(private http: HttpClient) { }
 
   getProduct(): Observable<any> {
@@ -23,24 +21,30 @@ export class ColorService {
   }
 
   postToCart(data: Product): Observable<any> {
-    return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
-      tap(() => {
-        const currentCartItems = this.cartItems.value;
-        const newCartItems = [...currentCartItems, data];
-        this.cartItems.next(newCartItems);
-      })
-    );
+    const currentCartItems = this.cartItems.value;
+    const existingProduct = currentCartItems.find(item => item.id === data.id && item.size === data.size);
+
+    if (existingProduct) {
+      // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+      existingProduct.quantity += data.quantity;
+      this.cartItems.next(currentCartItems);
+      return of(existingProduct);
+    } else {
+      // Sản phẩm chưa tồn tại trong giỏ hàng, thêm sản phẩm mới
+      return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
+        map((response: any) => {
+          currentCartItems.push(response);
+          this.cartItems.next(currentCartItems);
+          this.cartItemAdded.emit(response);
+          return response;
+        })
+      );
+    }
   }
   postToPay(data: Product): Observable<any> {
-    return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
-      tap(() => {
-        const currentCartItems = this.cartItems.value;
-        const newCartItems = [...currentCartItems, data];
-        this.cartItems.next(newCartItems);
-      })
-    );
+    return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data)
   }
-  getCartItems(idUser:number): Observable<any> {
+  getCartItems(idUser: number): Observable<any> {
     return this.http.get(`https://64488ed3b88a78a8f0ef2838.mockapi.io/cart?idUser=${idUser}`);
   }
   deleteCartItem(id: number): Observable<any> {
@@ -52,16 +56,5 @@ export class ColorService {
       })
     );
   }
-  localAddToCart(data: Product) {
-    let cartData = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    cartData = Array.isArray(cartData) ? cartData.concat(data) : [cartData, data];
-    localStorage.setItem('cartItems', JSON.stringify(cartData));
-    this.cartData.emit(cartData);
-  }
-  localAddToPay(data: Product) {
-    let cartPay = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    cartPay = Array.isArray(cartPay) ? cartPay.concat(data) : [cartPay, data];
-    localStorage.setItem('cartItems', JSON.stringify(cartPay));
-    this.cartPay.emit(cartPay);
-  }
+
 }

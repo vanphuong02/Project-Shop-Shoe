@@ -6,6 +6,9 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class UserService {
+  id(id: any) {
+    throw new Error('Method not implemented.');
+  }
   NameLogin = new BehaviorSubject("")
   constructor(private http : HttpClient) { }
   // các phương thức
