@@ -1,0 +1,23 @@
+<div class="add-product">
+    <h1>Add New Product</h1>
+    <form class="common-form" #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
+        <input type="text" class="form-input" placeholder="Enter Product Name" name="ShoeName" ngModel />
+        <input type="text" class="form-input" placeholder="Enter Product Price" name="price" ngModel />
+        <input type="text" class="form-input" placeholder="Enter Product Code" name="code" ngModel />
+        <input type="text" class="form-input" placeholder="Enter Product Color" name="color" ngModel />
+        <a>Enter Product Size</a>
+        <input type="text" class="form-input" placeholder="Enter Product Size" name="size"
+            ngModel="35,36,37,38,40,41,42" />
+        <a>Enter Product Quantity</a>
+        <input type="number" class="form-input" placeholder="Enter Product Quantity" name="quantity"
+            [(ngModel)]='quantity' />
+        <a>Enter Product Gender</a>
+        <select name="gender" class="form-input" ngModel>
+            <option value="Nam" selected>Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+        <input type="text" class="form-input" placeholder="Enter Product Image URL" name="img" ngModel />
+        <button class="form-button">Add Product</button>
+        <div class="custom-alert" *ngIf="addProductMessenge">{{addProductMessenge}}</div>
+    </form>
+</div>

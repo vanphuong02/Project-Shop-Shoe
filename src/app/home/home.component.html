@@ -1,101 +1,86 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Shoe Store</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-
-<body>
-
-    <!-- Navbar (sit on top) -->
-
-
-    <!-- Header -->
-    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-        <div class="w3-display-middle" style="white-space:nowrap;">
-            <!-- <span class="w3-center w3-padding-large w3-transparent w3-xlarge w3-wide w3-animate-opacity">SHOP <span class="w3-hide-small">SHOES</span> </span> -->
-        </div>
-        <img class="w3-image" src="./assets/images/homeimg.jpg" alt="Architecture" width="1500" height="800">
-    </header>
-
-    <!-- Page content -->
-    <div class="page">
-      <div class="product-list"
-          *ngFor="let item of products|limitToPipe:8"
-          routerLink="/Product/product-detail/{{item.id}}">
-          <div class="product-item">
-              <img routerLink="/Product/product-detail/{{item.id}}" src="{{ item.img }}" alt="" />
-              <div class="product-details">
-                  <a routerLink="/Product/product-detail/{{item.id}}">
-                      <h3 class="product-name">{{ item.ShoeName }}</h3>
-                  </a>
-                  <h3>---------------------</h3>
-                  <h3 class="product-color">{{ item.color }}</h3>
-                  <h3 class="product-price">{{ item.price | currency:'VND':'' }} VND</h3>
-                  <h3>{{ item.gender }}</h3>
-              </div>
-          </div>
-      </div>
+<section class="main-banner">
+    <div class="banner-text">
+        <h2>Welcome to our store</h2>
+        <p>We have the best selection of products</p>
+        <button routerLink="/Product/product-list" class="btn-shop-now">Shop Now</button>
     </div>
-        <!-- About Section -->
-        <div class="w3-container w3-padding-32" id="about">
-            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
-            <div class="center">----------------------------------------Sản phẩm được thực hiện bởi 3
-                người----------------------------------------</div>
-            <div class="center">.............Liên hệ với chúng tôi.............</div>
+</section>
+
+
+<div class="container">
+    <!-- Category Cards -->
+    <div class="category-wrapper">
+        <div class="category-card">
+            <img src="https://deburghshoes.com.au/wp-content/uploads/2021/10/mens_shoesdeburghs_ferracini-300x200.jpg"
+                alt="Nam">
+            <h2 class="category-title">Nam</h2>
+            <p class="category-description">Mua sắm cho phái mạnh của bạn với bộ sưu tập đa dạng của chúng tôi</p>
+            <a href="#" class="category-button">Xem ngay</a>
+        </div>
+        <div class="category-card">
+            <img src="https://img.freepik.com/free-photo/accessories-stylish-woman-walking-city-street-summer-fashion-style-legs-sneakers-grey-purse-handbag_285396-8532.jpg?w=900&t=st=1683238512~exp=1683239112~hmac=c52563b4342cf9fce6bfdd8bc3f7c49ad0475181f5ba0b32df8163a027d8b418"
+                alt="Nữ">
+            <h2 class="category-title">Nữ</h2>
+            <p class="category-description">Khám phá bộ sưu tập đa dạng của chúng tôi để cập nhật với xu hướng mới nhất
+            </p>
+            <a href="#" class="category-button">Xem ngay</a>
+        </div>
+        <div class="category-card">
+            <img src="https://www.coralspringsfootankle.com/wp-content/uploads/2020/02/When-To-Replace-Your-Shoes-300x200.jpg"
+                alt="Tất cả">
+            <h2 class="category-title">Tất cả</h2>
+            <p class="category-description">Tìm kiếm và mua sắm cho bất kỳ loại sản phẩm nào trong danh mục của chúng
+                tôi</p>
+            <a routerLink="/Product/product-list" class="category-button">Xem ngay</a>
+        </div>
+    </div>
+    <h2 class="product-overview">Product Overview</h2>
+    <!-- Product Cards -->
+    <div class="card-wrapper">
+        <div *ngFor="let item of products?.slice(0,8)" class="card">
+            <img src="{{item.img}}" alt="Product image">
+            <h2 class="card-title">{{item.ShoeName}}</h2>
+            <p class="card-price">{{ item.price | currency:'VND':'' }} VND</p>
+            <button routerLink="/Product/product-detail/{{item.id}}" class="card-button">Thêm vào giỏ hàng</button>
         </div>
 
-        <div class="image-container">
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="./assets/images/original.jpg" alt="Anh" style="width:100%">
-                <h3>Quyền Anh</h3>
-                <p class="w3-opacity">CEO & Founder</p>
-                <!-- <p>CEO nhưng ngủ cả ngày.</p> -->
-                <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="./assets/images/original.jpg" alt="Quý" style="width:100%">
-                <h3>Thiên Quý</h3>
-                <p class="w3-opacity">BrSE</p>
-                <!-- <p>Chỉ thích 1 mình bích du mà thôi mãi yêu bích du</p> -->
-                <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
-            </div>
-            <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="./assets/images/original.jpg" alt="Phương" style="width:100%">
-                <h3>Nguyễn Phương</h3>
-                <p class="w3-opacity">Manager</p>
-                <!-- <p>Quản lý chuyên bắt nạt mấy thằng nhân viên.</p> -->
-                <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
-            </div>
+    </div>
+    <div class="load-more">
+        <button routerLink="/Product/product-list" class="load-more-button">Load more</button>
+    </div>
+
+</div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>Danh mục</h3>
+            <ul>
+                <li><a href="#">Nam</a></li>
+                <li><a href="#">Nữ</a></li>
+                <li><a routerLink="/Product/product-list">Tất cả</a></li>
+            </ul>
         </div>
-
-        <!-- Contact Section -->
-        <div class="w3-container w3-padding-32" id="contact">
-            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-            <p>Lets get in touch and talk about your next project.</p>
-            <form action="/action_page.php" target="_blank">
-                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-                <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
-                <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
-                <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
-                <button class="w3-button w3-black w3-section" type="submit">
-                    <i class="fa fa-paper-plane"></i> SEND MESSAGE
-                </button>
-            </form>
+        <div class="footer-col">
+            <h3>Hỗ trợ</h3>
+            <ul>
+                <li><a href="#">Trung tâm trợ giúp</a></li>
+                <li><a href="#">Chính sách đổi trả</a></li>
+                <li><a href="#">Thanh toán</a></li>
+            </ul>
         </div>
-
-        <!-- Image of location/map -->
-
-        <!-- End page content -->
-
-
-
-    <!-- Footer -->
-
-
-</body>
-
-</html>
+        <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul>
+                <li><a href="#">Địa chỉ</a></li>
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Số điện thoại</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Về chúng tôi</h3>
+            <img src="https://s.alicdn.com/@sc04/kf/H17b5e3c352d84cfd8a7de669b57180f7x.jpg_300x300.jpg"
+                alt="Logo công ty">
+            <p>Công ty chuyên cung cấp sản phẩm thời trang đa dạng và chất lượng</p>
+        </div>
+    </div>
+</footer>

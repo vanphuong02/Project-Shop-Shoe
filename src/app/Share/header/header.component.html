@@ -3,17 +3,18 @@
     <div class="h1-item" routerLink="/home">Shop Shoes</div>
     <ul class="header-item">
       <li>
-        <button class="btn" (click)="login()" *ngIf="!nameLogin"
-          ><img
-            style="height: 15px; margin-right: 5px; margin-bottom: -1px"
-            src="./assets/images/userth.png"
-          />Đăng nhập</button
-        >
-        <a *ngIf="nameLogin" class="account"
-          ><img
-            style="height: 15px; margin-right: 5px; margin-bottom: -1px"
-            src="./assets/images/userth.png"
-          />{{ nameLogin }}
+        <button class="btn" (click)="login()" *ngIf="!nameLogin"><img
+            style="height: 15px; margin-right: 5px; margin-bottom: -1px" src="./assets/images/userth.png" />
+          Đăng nhập</button>
+        <a *ngIf="nameLogin" class="account"><img style="height: 15px; margin-right: 5px; margin-bottom: -1px"
+            src="./assets/images/userth.png" />{{ nameLogin }}
+          <ul class="sub-account">
+            <li class="sub-item-account" routerLink="/all-product-order">Đơn mua</li>
+            <li class="sub-item-account" (click)="logout()">Đăng xuất</li>
+          </ul>
+        </a>
+        <a *ngIf="nameLogin" class="account"><img style="height: 15px; margin-right: 5px; margin-bottom: -1px"
+            src="./assets/images/userth.png" />{{ nameLogin }}
           <ul class="sub-account">
             <li class="sub-item-account" routerLink="/all-product-order">Đơn mua</li>
             <li class="sub-item-account" (click)="logout()">Đăng xuất</li>
@@ -21,13 +22,8 @@
         </a>
       </li>
       <li>
-        <a routerLink="/cart"
-          ><img
-            style="height: 15px; margin-right: 8px; margin-bottom: -3px"
-            src="./assets/images/carts.png"
-            alt=""
-          />Giỏ Hàng({{ cartItems }})</a
-        >
+        <a routerLink="/cart"><img style="height: 15px; margin-right: 8px; margin-bottom: -3px"
+            src="./assets/images/carts.png" alt="" />Giỏ Hàng({{ cartItems }})</a>
       </li>
     </ul>
   </header>
