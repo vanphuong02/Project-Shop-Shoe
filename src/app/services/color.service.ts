@@ -25,12 +25,10 @@ export class ColorService {
     const existingProduct = currentCartItems.find(item => item.id === data.id && item.size === data.size);
 
     if (existingProduct) {
-      // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
       existingProduct.quantity += data.quantity;
       this.cartItems.next(currentCartItems);
       return of(existingProduct);
     } else {
-      // Sản phẩm chưa tồn tại trong giỏ hàng, thêm sản phẩm mới
       return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
         map((response: any) => {
           currentCartItems.push(response);
@@ -46,12 +44,10 @@ export class ColorService {
     const existingProduct = currentCartItems.find(item => item.id === data.id && item.size === data.size);
 
     if (existingProduct) {
-      // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
       existingProduct.quantity += data.quantity;
       this.cartItems.next(currentCartItems);
       return of(existingProduct);
     } else {
-      // Sản phẩm chưa tồn tại trong giỏ hàng, thêm sản phẩm mới
       return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
         map((response: any) => {
           currentCartItems.push(response);
