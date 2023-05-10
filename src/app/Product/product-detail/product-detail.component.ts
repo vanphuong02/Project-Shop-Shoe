@@ -80,7 +80,7 @@ export class ProductDetailComponent implements OnInit {
       }
       this.product.quantity = this.number;
       this.detail
-        .postToCart({ ...this.product, size: this.selectedOption, idUser: this.idUser.id })
+        .postToPay({ ...this.product, size: this.selectedOption, idUser: this.idUser.id })
         .subscribe(
           (response) => {
             console.log(response);
