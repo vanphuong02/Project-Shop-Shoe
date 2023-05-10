@@ -66,11 +66,6 @@ export class ProductDetailComponent implements OnInit {
         });
       console.log(this.product);
     }
-    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    let cartItem = { ...this.product, size: this.selectedOption };
-    cartItems.push(cartItem);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
   }
   AddToPay() {
     if (this.product) {
@@ -86,11 +81,6 @@ export class ProductDetailComponent implements OnInit {
         }, error => {
           console.log(error);
         });
-      console.log(this.product);
     }
-    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    let cartItem = { ...this.product, size: this.selectedOption };
-    cartItems.push(cartItem);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 }

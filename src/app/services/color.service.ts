@@ -52,16 +52,4 @@ export class ColorService {
       })
     );
   }
-  localAddToCart(data: Product) {
-    let cartData = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    cartData = Array.isArray(cartData) ? cartData.concat(data) : [cartData, data];
-    localStorage.setItem('cartItems', JSON.stringify(cartData));
-    this.cartData.emit(cartData);
-  }
-  localAddToPay(data: Product) {
-    let cartPay = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    cartPay = Array.isArray(cartPay) ? cartPay.concat(data) : [cartPay, data];
-    localStorage.setItem('cartItems', JSON.stringify(cartPay));
-    this.cartPay.emit(cartPay);
-  }
 }

@@ -1,62 +1,55 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { ColorService } from 'src/app/services/color.service';
-import { UserService } from 'src/app/services/user.service';
-import { HomeComponent } from 'src/app/home/home.component';
-import { LoginComponent } from 'src/app/login/login.component';
-import { Product } from 'src/app/product';
+import { Component, EventEmitter, OnInit } from "@angular/core";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
+import { ColorService } from "src/app/services/color.service";
+import { UserService } from "src/app/services/user.service";
+import { HomeComponent } from "src/app/home/home.component";
+import { LoginComponent } from "src/app/login/login.component";
+import { Product } from "src/app/product";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
   cartItems = 0;
-  name: string = '';
-  nameLogin: string = '';
+  name: string = "";
+  nameLogin: string = "";
 
   constructor(
     private product: ColorService,
     private cookieService: CookieService,
     private user: UserService,
     private dialog: MatDialog,
-    private router : Router
+    private router: Router
   ) {}
 
-ngOnInit() {
-  const namecookie = this.cookieService.get('user')
-
-  this.product.getCartItems(+JSON.parse(namecookie).id).subscribe((cartItems: Product[] | []) => {
-    this.cartItems = cartItems.length;
-  });
-
-  if(namecookie){
-   this.user.getNameLogin().subscribe(name => {
-    this.nameLogin = name
-  })
-  const parseNameCookie = JSON.parse(namecookie)
-  this.user.setNameLogin(parseNameCookie.username)
+  ngOnInit() :void{
+    this.user.getNameLogin().subscribe((name) => {
+      this.nameLogin = name;
+    });
+    const namecookieUser = this.cookieService.get('user');
+    this.product
+    .getCartItems(JSON.parse(namecookieUser).id)
+    .subscribe((cartItems: Product[] | []) => {
+      this.cartItems = cartItems.length;
+    });
+    this.getName()
+  }
+getName(){
+  const namecookieUser = this.cookieService.get("user");
+  this.user.setNameLogin(JSON.parse(namecookieUser).username)
+}
+  login() {
+    const dialogRef = this.dialog.open(LoginComponent);
+  }
+  logout() {
+    this.cookieService.delete("admin")
+    this.cookieService.delete("user");
+    this.user.setNameLogin(this.name);
+    this.router.navigate(["/home"]);
+    this.cartItems = 0;
   }
 }
-
-login() {
-
-  const dialogRef = this.dialog.open(LoginComponent);
-}
-logout(){
-   this.cookieService.deleteAll('user')
-   this.user.setNameLogin(this.name)
-   this.router.navigate(['/home'])
-   this.cartItems = 0;
-}
-}
-
-
-
-
-
-
-

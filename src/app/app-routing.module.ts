@@ -15,10 +15,8 @@ import { CartComponent } from './cart/cart.component';
 import { publishFacade } from '@angular/compiler';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { AllProductOrderComponent } from './purchase-order/all-product-order/all-product-order.component';
-import { CompleteComponent } from './purchase-order/complete/complete.component';
-import { PendingApprovalComponent } from './purchase-order/pending-approval/pending-approval.component';
-import { RejectComponent } from './purchase-order/reject/reject.component';
 import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
+import { PurchaseStatusComponent } from './purchase-order/purchase-status/purchase-status.component';
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'home',component:HomeComponent},
@@ -34,10 +32,8 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'purchase-order',component:PurchaseOrderComponent},
   {path:'all-product-order',component:AllProductOrderComponent},
-  {path:'complete',component:CompleteComponent},
-  {path:'pending-approval',component:PendingApprovalComponent},
-  {path:'reject',component:RejectComponent},
   {path:'history',component:HistoryOrderComponent},
+  {path:'purchase-status/:id',component:PurchaseStatusComponent},
   {path:'**',component:ErrorComponent}
 ];
 

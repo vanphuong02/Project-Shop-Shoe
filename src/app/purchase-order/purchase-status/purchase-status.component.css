@@ -5,8 +5,20 @@
   font-size: 14px;
   font-family: Arial, sans-serif;
   display: flex;
-}
 
+}
+.btnStatus{
+    background: #454545;
+    border: 1px solid #454545;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+  }
 .order-item {
   display: flex;
   align-items: center;

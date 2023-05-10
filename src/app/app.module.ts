@@ -22,12 +22,11 @@ import { ErrorComponent } from './error/error.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { AllProductOrderComponent } from './purchase-order/all-product-order/all-product-order.component';
-import { PendingApprovalComponent } from './purchase-order/pending-approval/pending-approval.component';
-import { CompleteComponent } from './purchase-order/complete/complete.component';
-import { RejectComponent } from './purchase-order/reject/reject.component';
 import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LimitToPipePipe } from './limit-to.pipe.pipe';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { PurchaseStatusComponent } from './purchase-order/purchase-status/purchase-status.component';
 
 
 @NgModule({
@@ -49,11 +48,9 @@ import { LimitToPipePipe } from './limit-to.pipe.pipe';
     AdminHomeComponent,
     PurchaseOrderComponent,
     AllProductOrderComponent,
-    PendingApprovalComponent,
-    CompleteComponent,
-    RejectComponent,
     HistoryOrderComponent,
     LimitToPipePipe,
+    PurchaseStatusComponent,
 
   ],
   imports: [
@@ -64,7 +61,11 @@ import { LimitToPipePipe } from './limit-to.pipe.pipe';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

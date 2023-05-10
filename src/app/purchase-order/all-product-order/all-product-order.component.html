@@ -7,7 +7,7 @@
       <p class="product-name" *ngIf="inf" >{{pr.ShoeName}}</p>
       <p class="quantity">Quantity:{{pr.quantity}}</p>
       <p class="price">Price:{{pr.price|currency:'VND':''}}VND</p>
-      <button class="btnStatus" (click)="getStatus(inf.id)">xem trạng thái</button>
+      <button class="btnStatus" (click)="getStatus(inf.status)">xem trạng thái</button>
     </div>
   </div>
 </div>

@@ -1,11 +1,11 @@
 <app-purchase-order></app-purchase-order>
 <div class="order" *ngFor="let inf of infOrder">
   <div class="order-item" *ngFor="let pr of inf.products">
-    <img src={{pr.img}} alt="Product image">
+    <img src="{{ pr.img }}" alt="Product image" />
     <div class="order-info">
-      <p class="product-name">{{pr.ShoeName}}</p>
-      <p class="quantity">Quantity:{{pr.quantity}}</p>
-      <p class="price">Price:{{pr.price|currency:'VND':''}}VND</p>
+      <p class="product-name">{{ pr.ShoeName }}</p>
+      <p class="quantity">Quantity:{{ pr.quantity }}</p>
+      <p class="price">Price:{{ pr.price | currency : "VND" : "" }}VND</p>
     </div>
   </div>
 </div>

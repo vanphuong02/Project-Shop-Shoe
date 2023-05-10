@@ -73,3 +73,6 @@ form .form-control {
    justify-content: center;
    cursor: pointer;
 }
+.input{
+  padding-left: 5px;
+}

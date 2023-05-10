@@ -53,11 +53,13 @@ export class LoginComponent {
           JSON.stringify({ id: user.id, username: user.username })
         );
         this.userd.setNameLogin(user.username);
+        this.route.navigate(['/home'])
         this.matdialog.closeAll();
       }
       else if (admin) {
-        this.cookieService.set('admin', "admin")
+        this.cookieService.set("admin",JSON.stringify({ id: admin.id, username: admin.username }))
         this.route.navigate(['/homeadmin'])
+        this.matdialog.closeAll();
       }
       else {
         this.err = true;

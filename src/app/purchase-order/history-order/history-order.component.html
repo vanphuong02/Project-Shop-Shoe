@@ -1,12 +1,15 @@
 <app-purchase-order></app-purchase-order>
 <div class="order" *ngFor="let inf of infOrder; let i = index">
-   <div *ngIf="inf.status == 2 || inf.status == -1">
+   <div>
     <div class="order-item" *ngFor="let pr of inf.products" >
       <img src={{pr.img}} alt="Product image">
       <div class="order-info">
+        <p  class="order-date">Ngày:{{inf.dateCreate | date:'dd/MM/yyyy'}}</p>
         <p class="product-name">{{pr.ShoeName}}</p>
         <p class="quantity">Quantity:{{pr.quantity}}</p>
         <p class="price">Price:{{pr.price|currency:'VND':''}}VND</p>
+        <p *ngIf="inf.status == 2">Trạng thái : Hoàn tất</p>
+        <p *ngIf="inf.status == -1">Trạng thái: Bị hủy</p>
       </div>
    </div>
   </div>
