@@ -28,6 +28,9 @@ import { RejectComponent } from './purchase-order/reject/reject.component';
 import { HistoryOrderComponent } from './purchase-order/history-order/history-order.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LimitToPipePipe } from './limit-to.pipe.pipe';
+import { SellerHomeComponent } from './admin/seller-home/seller-home.component';
+import { SellerUpdateProductComponent } from './admin/seller-update-product/seller-update-product.component';
+import { SellerAddProductComponent } from './admin/seller-add-product/seller-add-product.component';
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { LimitToPipePipe } from './limit-to.pipe.pipe';
     RejectComponent,
     HistoryOrderComponent,
     LimitToPipePipe,
-
+    SellerHomeComponent,
+    SellerUpdateProductComponent,
+    SellerAddProductComponent
   ],
   imports: [
     BrowserModule,

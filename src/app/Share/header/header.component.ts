@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   cartItems = 0;
   name: string = '';
   nameLogin: string = '';
+  nameLoginAdmin: string = '';
 
   constructor(
     private product: ColorService,
@@ -28,39 +29,46 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     const namecookie = this.cookieService.get('user');
-
-    this.product.cartItems.subscribe((cartItems: Product[]) => {
+    const namecookieadmin = this.cookieService.get('admin')
+    this.product.getCartItems(+JSON.parse(namecookie).id).subscribe((cartItems: Product[] | []) => {
+      this.cartItems = cartItems.length;
+    });
+    this.product.getCartItems(+JSON.parse(namecookieadmin).id).subscribe((cartItems: Product[] | []) => {
       this.cartItems = cartItems.length;
     });
 
+
     if (namecookie) {
       this.user.getNameLogin().subscribe(name => {
-        this.nameLogin = name;
-      });
-      const parseNameCookie = JSON.parse(namecookie);
-      this.user.setNameLogin(parseNameCookie.username);
+        this.nameLogin = name
+      })
+      const parseNameCookie = JSON.parse(namecookie)
+      this.user.setNameLogin(parseNameCookie.username)
     }
-
-    const user = this.cookieService.get('user');
-    if (user) {
-      const idUser = JSON.parse(user).id;
-      this.product.getCartItems(idUser).subscribe((cartItems: Product[]) => {
-        this.cartItems = cartItems.length;
-      });
-
-      this.product.cartItemAdded.subscribe(() => {
-        this.cartItems = this.product.cartItems.value.length;
-      });
+    if (namecookieadmin) {
+      this.user.getNameLogin().subscribe(name => {
+        this.nameLoginAdmin = name
+      })
+      const parseNameCookie = JSON.parse(namecookieadmin)
+      this.user.setNameLogin(parseNameCookie.username)
     }
   }
+
   login() {
+
     const dialogRef = this.dialog.open(LoginComponent);
   }
-
   logout() {
-    this.cookieService.deleteAll('user');
-    this.user.setNameLogin(this.name);
-    this.router.navigate(['/home']);
+    this.cookieService.deleteAll('user')
+    this.user.setNameLogin(this.name)
+    this.router.navigate(['/home'])
     this.cartItems = 0;
   }
 }
+
+
+
+
+
+
+
