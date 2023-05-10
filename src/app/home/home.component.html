@@ -1,12 +1,3 @@
-<section class="main-banner">
-    <div class="banner-text">
-        <h2>Welcome to our store</h2>
-        <p>We have the best selection of products</p>
-        <button routerLink="/Product/product-list" class="btn-shop-now">Shop Now</button>
-    </div>
-</section>
-
-
 <div class="container">
     <!-- Category Cards -->
     <div class="category-wrapper">
@@ -37,11 +28,7 @@
     <h2 class="product-overview">Product Overview</h2>
     <!-- Product Cards -->
     <div class="card-wrapper">
-<<<<<<< HEAD
-        <div *ngFor="let item of products?.slice(0,8)" class="card">
-=======
         <div *ngFor="let item of products?.slice(0, 8)" class="card">
->>>>>>> df5603a550ba95f0500d3de674e3915428b5ee34
             <img src="{{item.img}}" alt="Product image">
             <h2 class="card-title">{{item.ShoeName}}</h2>
             <p class="card-price">{{ item.price | currency:'VND':'' }} VND</p>
@@ -54,7 +41,6 @@
     </div>
 
 </div>
-<<<<<<< HEAD
 <footer>
     <div class="footer-container">
         <div class="footer-col">
@@ -89,6 +75,3 @@
         </div>
     </div>
 </footer>
-=======
-<app-footer></app-footer>
->>>>>>> df5603a550ba95f0500d3de674e3915428b5ee34
