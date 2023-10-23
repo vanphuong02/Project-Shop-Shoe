@@ -6,13 +6,13 @@
         <button class="btn" (click)="login()" *ngIf="!nameLogin"><img
             style="height: 15px; margin-right: 5px; margin-bottom: -1px" src="./assets/images/userth.png" />
           Đăng nhập</button>
-        <a *ngIf="nameLogin" class="account"><img style="height: 15px; margin-right: 5px; margin-bottom: -1px"
+        <!-- <a *ngIf="nameLogin" class="account"><img style="height: 15px; margin-right: 5px; margin-bottom: -1px"
             src="./assets/images/userth.png" />{{ nameLogin }}
           <ul class="sub-account">
             <li class="sub-item-account" routerLink="/all-product-order">Đơn mua</li>
             <li class="sub-item-account" (click)="logout()">Đăng xuất</li>
           </ul>
-        </a>
+        </a> -->
         <a *ngIf="nameLogin" class="account"><img style="height: 15px; margin-right: 5px; margin-bottom: -1px"
             src="./assets/images/userth.png" />{{ nameLogin }}
           <ul class="sub-account">

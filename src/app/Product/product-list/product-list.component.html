@@ -1,6 +1,6 @@
 <div class="fs">
     <div class="product-list"
-        *ngFor="let item of products | paginate:{itemsPerPage:12,currentPage:p} |filter:searchkey:'ShoeName'"
+        *ngFor="let item of filteredProducts  | paginate:{itemsPerPage:12,currentPage:p} |filter:searchkey:'ShoeName'"
         routerLink="/Product/product-detail/{{item.id}}">
         <div class="product-item">
             <img class="img-item" routerLink="/Product/product-detail/{{item.id}}" src="{{ item.img }}" alt="" />

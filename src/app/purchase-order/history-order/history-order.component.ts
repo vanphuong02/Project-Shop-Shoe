@@ -19,5 +19,6 @@ export class HistoryOrderComponent implements OnInit{
         return (order.status == 2 || order.status == -1);
       });
   })
+
 }
 }

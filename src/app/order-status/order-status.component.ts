@@ -63,13 +63,8 @@ export class OrderStatusComponent implements OnInit {
     private routered: ActivatedRoute,
     private used: UserService,
     private cookieService: CookieService,
-<<<<<<< HEAD
     private productOrder: ColorService,
-
-=======
-    private productOrder: ColorService
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
-  ) {}
+  ) { }
   ngOnInit() {
     this.getProductCart();
     // lấy danh sách tỉnh thành phố
@@ -94,27 +89,24 @@ export class OrderStatusComponent implements OnInit {
   submitOrder() {
     // lấy name thành phố , huyện
     const nameCity = this.citys.find(
-<<<<<<< HEAD
-      (city) => city.idProvince === this.shipInformation.value.city
-=======
-(city) => city.idProvince === this.shipInformation.value.city
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
-    );
+
+      (city) => city.idProvince === this.shipInformation.value.city)
+
+
+
+
+
     const idUser = JSON.parse(this.cookieService.get("user") || "");
     this.districCity = this.districs.find(
       (distric) => distric.idDistrict === this.shipInformation.value.distric
     );
-   // lay san pham trong cart
+    // lay san pham trong cart
     this.productOrder.getCartItems(idUser.id).subscribe((res) => {
-    this.itemCart = res;
+      this.itemCart = res;
 
       const shipInf = {
         idUser: idUser.id,
-<<<<<<< HEAD
         fullName: this.shipInformation.value.fullName,
-=======
-        fullname: this.shipInformation.value.fullName,
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
         sodt: this.shipInformation.value.sodt,
         address: this.shipInformation.value.address,
         city: nameCity?.name,
@@ -127,15 +119,9 @@ export class OrderStatusComponent implements OnInit {
       // add
       if (this.shipInformation.valid) {
         this.order.add(shipInf).subscribe((res) => {
-         this.router.navigate(["/all-product-order"]);
+          this.router.navigate(["/all-product-order"]);
         });
-<<<<<<< HEAD
         this.removeall()
-=======
-        this.order.delete(idUser.id).subscribe((res) => {
-          console.log("delete success");
-       })
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
       }
       else {
         ValidatorForm.validateAllFormFileds(this.shipInformation);
@@ -159,7 +145,6 @@ export class OrderStatusComponent implements OnInit {
       }, 0);
       // console.log("total:",this.total);
     });
-<<<<<<< HEAD
   }
 
   // xóa sản phẩm trong cart
@@ -172,10 +157,8 @@ export class OrderStatusComponent implements OnInit {
         });
       });
     }
-=======
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
   }
-  deleteProductOrder(id: number) {
-    this.order.delete(id).subscribe((res) => {});
-  }
+
+  // xóa sản phẩm trong cart
+
 }

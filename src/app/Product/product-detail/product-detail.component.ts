@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ColorService } from 'src/app/services/color.service';
 import { Product } from 'src/app/product';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,11 +17,13 @@ export class ProductDetailComponent implements OnInit {
   idUser: any;
   submitAttempted = false;
 
+
   constructor(
     private detail: ColorService,
     private router: ActivatedRoute,
     private routerProduct: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +52,7 @@ export class ProductDetailComponent implements OnInit {
     }
 
     if (this.product) {
+      this.spinner.show();
       this.submitAttempted = true;
       if (!this.selectedOption) {
         return;
@@ -59,9 +63,11 @@ export class ProductDetailComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log(response);
+            this.spinner.hide();
           },
           (error) => {
             console.log(error);
+            this.spinner.hide();
           }
         );
       console.log(this.product);
@@ -74,32 +80,26 @@ export class ProductDetailComponent implements OnInit {
     }
 
     if (this.product) {
+      this.spinner.show();
       this.submitAttempted = true;
       if (!this.selectedOption) {
         return;
       }
       this.product.quantity = this.number;
-<<<<<<< HEAD
-      this.detail.postToPay({ ...this.product, size: this.selectedOption })
-        .subscribe(response => {
-          console.log(response);
-          this.routerProdcut.navigate(['/cart']);
-        }, error => {
-          console.log(error);
-        });
-=======
       this.detail
         .postToPay({ ...this.product, size: this.selectedOption, idUser: this.idUser.id })
         .subscribe(
           (response) => {
             console.log(response);
+            this.routerProduct.navigate(['/cart']);
+            this.spinner.hide();
           },
           (error) => {
             console.log(error);
+            this.spinner.hide();
           }
         );
       console.log(this.product);
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
     }
   }
 }

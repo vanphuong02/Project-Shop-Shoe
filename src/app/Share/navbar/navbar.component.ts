@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ColorService } from 'src/app/services/color.service';
-import { Route } from '@angular/router';
-
 
 @Component({
   selector: 'app-navbar',
@@ -9,50 +8,25 @@ import { Route } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public searchTerm: string = ''
-  public totalItems: number = 0
-  public gender: any
-  products: any
-  @Output() onclick = new EventEmitter<any>();
-  constructor(private prd: ColorService) { }
-  ngOnInit(): void {
-    this.prd.getProduct().subscribe(res => {
-      this.products = res
-    })
+  public searchTerm: string = '';
+  public totalItems: number = 0;
+  products: any[] | undefined;
 
+  constructor(private prd: ColorService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.prd.getProduct().subscribe((res: any[]) => {
+      this.products = res;
+    });
   }
+
   search(event: any) {
     this.searchTerm = (event.target as HTMLInputElement).value;
-    console.log(this.searchTerm);
     this.prd.search.next(this.searchTerm);
   }
-  getall() {
-    this.onclick.emit(
-      this.prd.getProduct().subscribe(res => {
-        this.products = res
-      })
-    );
 
+  searchGender(gender: string) {
+    this.prd.filterType.next(gender);
+    this.router.navigate(['/Product/product-list']);
   }
-  searchNam() {
-    this.prd.getProduct().subscribe(res => {
-      this.products = res
-      this.products = this.products.filter((res: { gender: string; }) => {
-        return res.gender === 'Nam'
-      })
-    })
-  }
-  searchAll() {
-    this.getall()
-  }
-  searchNu() {
-    this.prd.getProduct().subscribe(res => {
-      this.products = res
-      this.products = this.products.filter((res: { gender: string; }) => {
-        return res.gender === 'Nữ'
-      })
-    })
-  }
-
-
 }

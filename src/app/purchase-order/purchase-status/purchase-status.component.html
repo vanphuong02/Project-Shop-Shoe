@@ -5,8 +5,11 @@
     <div class="order-info">
       <p class="product-name">{{ pr.ShoeName }}</p>
       <p class="quantity">Quantity:{{ pr.quantity }}</p>
-      <p class="price">Price:{{ pr.price | currency : "VND" : "" }}VND</p>
+      <p class="price">Price:{{pr.price*pr.quantity|currency:'VND':''}}VND</p>
     </div>
   </div>
 </div>
 <div *ngIf="Notification">chưa có đơn hàng</div>
+
+
+

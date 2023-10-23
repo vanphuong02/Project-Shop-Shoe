@@ -19,8 +19,8 @@ export class LoginComponent {
   err = false;
   @ViewChild("checkexit") modalContent!: ElementRef;
   loginForm = this.fb.group({
-    username: ["", Validators.required],
-    password: ["", Validators.required],
+    username: ["",Validators.required],
+    password: ["",Validators.required],
   });
   constructor(
     private route: Router,
@@ -29,25 +29,24 @@ export class LoginComponent {
     private http: HttpClient,
     private cookieService: CookieService,
     private matdialog: MatDialog
-  ) { }
+  ) {}
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      // kiểm tra tài khoản user
-      this.userd.getList().subscribe((res) => {
-        const user = res.find((us: User) => {
-          return (us.username ===
-            this.loginForm.value.username &&
-            bcrypt.compareSync(this.loginForm.value.password ?? "", us.password)) && us.jurisdiction === 0;
-        });
-        // kiểm tra tài khoản admin
-        const admin = res.find((us: User) => {
-          return (us.username ===
-            this.loginForm.value.username &&
-            bcrypt.compareSync(this.loginForm.value.password ?? "", us.password))
-            && us.jurisdiction === 1;
-        })
+    if(this.loginForm.valid){
+    // kiểm tra tài khoản user
+    this.userd.getList().subscribe((res) => {
+      const user = res.find((us: User) => {
+        return (us.username ===
+          this.loginForm.value.username &&
+          bcrypt.compareSync(this.loginForm.value.password ?? "", us.password)) && us.jurisdiction === 0;
+      });
+    // kiểm tra tài khoản admin
+      const admin = res.find((us: User) => {
+        return (us.username ===
+        this.loginForm.value.username &&
+        bcrypt.compareSync(this.loginForm.value.password ?? "", us.password))
+          && us.jurisdiction === 1;
+      })
 
-<<<<<<< HEAD
       if (user) {
         this.cookieService.set(
           "user",
@@ -70,28 +69,6 @@ export class LoginComponent {
    else{
     ValidatorForm.validateAllFormFileds(this.loginForm)
    }
-=======
-        if (user) {
-          this.cookieService.set(
-            "user",
-            JSON.stringify({ id: user.id, username: user.username })
-          );
-          this.userd.setNameLogin(user.username);
-          this.matdialog.closeAll();
-        }
-        else if (admin) {
-          this.cookieService.set('admin', "admin")
-          this.route.navigate(['/seller-home'])
-        }
-        else {
-          this.err = true;
-        }
-      });
-    }
-    else {
-      ValidatorForm.validateAllFormFileds(this.loginForm)
-    }
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
   }
   register() {
     this.matdialog.closeAll();

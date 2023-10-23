@@ -315,5 +315,5 @@
 
 .error-message {
     color: red;
-    display: inline-block;
+    position: absolute;
 }

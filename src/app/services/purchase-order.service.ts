@@ -8,7 +8,7 @@ import { ShipInformation } from "../shipInformation";
 })
 export class PurchaseOrderService {
   // status = 0 đơn hàng mới khởi tạo
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   getHistory(idUser: number): Observable<ShipInformation[]> {
     return this.http.get<ShipInformation[]>(
       `https://6448cb05e7eb3378ca35ea13.mockapi.io/shipInformations?idUser=${idUser}`
@@ -39,6 +39,8 @@ export class PurchaseOrderService {
     return this.http.get<ShipInformation[]>(
       `https://6448cb05e7eb3378ca35ea13.mockapi.io/shipInformations?idUser=${idUser}&status=${status}`
     );
+
+
   }
   getIdOrder(id: number): Observable<ShipInformation> {
     return this.http.get<ShipInformation>(

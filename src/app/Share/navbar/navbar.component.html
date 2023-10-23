@@ -4,13 +4,13 @@
             <div class="navbar-brand"><img routerLink="/home" src="./assets/images/Logo_Ananas_Header.svg"></div>
         </div>
         <div class="linmitind">
-            <div class="row"><a routerLink="/Product/product-list">Sản Phẩm</a></div>
+            <div class="row"><a (click)="searchGender(' ')">Sản Phẩm</a></div>
             <div class="line"></div>
-            <div class="row"><a>Nam</a></div>
+            <div class="row"><a (click)="searchGender('Nam')">Nam</a></div>
             <div class="line"></div>
-            <div class="row"><a>Nữ</a></div>
-        </div>
+            <div class="row"><a (click)="searchGender('Nữ')">Nữ</a></div>
 
+        </div>
         <div class="input-text">
             <input class="input-text-chird" type="text" [(ngModel)]="searchTerm" (keyup)="search($event)"
                 placeholder="Tìm kiếm">
@@ -18,9 +18,6 @@
     </div>
     <div class="main-header">
         <div class="main-header-item ">
-            <!-- <i class="fa-solid fa-arrow-left"></i> -->
             <div class="quylovebichdu">Chào mừng bạn đã đến mua giày ở Shop Shoes</div>
-            <!-- <i class="fa-solid fa-arrow-right"></i> -->
         </div>
-
     </div>

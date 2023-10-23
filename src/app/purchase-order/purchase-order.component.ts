@@ -9,24 +9,26 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './purchase-order.component.html',
   styleUrls: ['./purchase-order.component.css']
 })
-export class PurchaseOrderComponent implements OnInit{
-   constructor( private router : ActivatedRoute,
-                private purchase : PurchaseOrderService,
-                private cookieService : CookieService,
-                private route: Router
-              ){}
-   ngOnInit(){
+export class PurchaseOrderComponent implements OnInit {
+  constructor(private router: ActivatedRoute,
+    private purchase: PurchaseOrderService,
+    private cookieService: CookieService,
+    private route: Router
+  ) { }
+  ngOnInit() {
     const idUser = JSON.parse(this.cookieService.get("user") || "");
     const status = this.router.snapshot.params['id'];
-    console.log("status: ",status);
+    console.log("status: ", status);
 
-    this.purchase.getOrderStatus(idUser, status).subscribe(res =>{
-        let purchase = res
-        purchase = purchase.filter((pr:ShipInformation) =>{
-            return (pr.status === status)
-        })
+    this.purchase.getOrderStatus(idUser, status).subscribe(res => {
+      let purchase = res
+      purchase = purchase.filter((pr: ShipInformation) => {
+        return (pr.status === status)
+      })
     })
-   }
+  }
+
 }
+
 
 

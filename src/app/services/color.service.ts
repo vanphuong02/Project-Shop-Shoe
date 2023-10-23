@@ -10,6 +10,7 @@ export class ColorService {
   cartItems = new BehaviorSubject<Product[]>([]);
   public search = new BehaviorSubject<string>("");
   cartItemAdded = new EventEmitter<Product>();
+  filterType = new BehaviorSubject<string>("");
   constructor(private http: HttpClient) { }
 
   getProduct(): Observable<any> {
@@ -22,38 +23,37 @@ export class ColorService {
 
   postToCart(data: Product): Observable<any> {
     const currentCartItems = this.cartItems.value;
-    const existingProduct = currentCartItems.find(item => item.id === data.id && item.size === data.size);
+    const existingProductIndex = currentCartItems.findIndex(item => item.id === data.id && item.size === data.size);
 
-    if (existingProduct) {
-      existingProduct.quantity += data.quantity;
+    if (existingProductIndex !== -1) {
+      currentCartItems[existingProductIndex].quantity += data.quantity;
       this.cartItems.next(currentCartItems);
-      return of(existingProduct);
+      return this.http.put('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart/' + currentCartItems[existingProductIndex].id, currentCartItems[existingProductIndex]);
     } else {
       return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
-        map((response: any) => {
+        tap((response: any) => {
           currentCartItems.push(response);
           this.cartItems.next(currentCartItems);
           this.cartItemAdded.emit(response);
-          return response;
         })
       );
     }
   }
+
   postToPay(data: Product): Observable<any> {
     const currentCartItems = this.cartItems.value;
-    const existingProduct = currentCartItems.find(item => item.id === data.id && item.size === data.size);
+    const existingProductIndex = currentCartItems.findIndex(item => item.id === data.id && item.size === data.size);
 
-    if (existingProduct) {
-      existingProduct.quantity += data.quantity;
+    if (existingProductIndex !== -1) {
+      currentCartItems[existingProductIndex].quantity += data.quantity;
       this.cartItems.next(currentCartItems);
-      return of(existingProduct);
+      return this.http.put('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart/' + currentCartItems[existingProductIndex].id, currentCartItems[existingProductIndex]);
     } else {
       return this.http.post('https://64488ed3b88a78a8f0ef2838.mockapi.io/cart', data).pipe(
-        map((response: any) => {
+        tap((response: any) => {
           currentCartItems.push(response);
           this.cartItems.next(currentCartItems);
           this.cartItemAdded.emit(response);
-          return response;
         })
       );
     }
@@ -70,8 +70,4 @@ export class ColorService {
       })
     );
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
 }

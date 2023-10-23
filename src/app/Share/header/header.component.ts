@@ -15,14 +15,9 @@ import { Product } from "src/app/product";
 })
 export class HeaderComponent implements OnInit {
   cartItems = 0;
-<<<<<<< HEAD
-  name: string = "";
-  nameLogin: string = "";
-=======
   name: string = '';
   nameLogin: string = '';
   nameLoginAdmin: string = '';
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
 
   constructor(
     private product: ColorService,
@@ -30,82 +25,45 @@ export class HeaderComponent implements OnInit {
     private user: UserService,
     private dialog: MatDialog,
     private router: Router
-<<<<<<< HEAD
   ) {}
-
-  ngOnInit() :void{
-    this.user.getNameLogin().subscribe((name) => {
-      this.nameLogin = name;
-    });
-    const namecookieUser = this.cookieService.get('user');
-    this.product
-    .getCartItems(JSON.parse(namecookieUser).id)
-    .subscribe((cartItems: Product[] | []) => {
-      this.cartItems = cartItems.length;
-    });
-    this.getName()
-  }
-getName(){
-  const namecookieUser = this.cookieService.get("user");
-  this.user.setNameLogin(JSON.parse(namecookieUser).username)
-}
-  login() {
-    const dialogRef = this.dialog.open(LoginComponent);
-  }
-  logout() {
-    this.cookieService.delete("admin")
-    this.cookieService.delete("user");
-    this.user.setNameLogin(this.name);
-    this.router.navigate(["/home"]);
-    this.cartItems = 0;
-  }
-}
-=======
-  ) { }
 
   ngOnInit() {
     const namecookie = this.cookieService.get('user');
-    const namecookieadmin = this.cookieService.get('admin')
-    this.product.getCartItems(+JSON.parse(namecookie).id).subscribe((cartItems: Product[] | []) => {
-      this.cartItems = cartItems.length;
-    });
-    this.product.getCartItems(+JSON.parse(namecookieadmin).id).subscribe((cartItems: Product[] | []) => {
+   
+    this.product.cartItems.subscribe((cartItems: Product[]) => {
       this.cartItems = cartItems.length;
     });
 
+    this.user.getNameLogin().subscribe((name: string) => {
+      this.nameLogin= name
+    })
+ 
+    const user = this.cookieService.get('user');
+    if (user) {
+      const idUser = JSON.parse(user).id;
+      this.product.getCartItems(idUser).subscribe((cartItems: Product[]) => {
+        this.cartItems = cartItems.length;
+      });
 
-    if (namecookie) {
-      this.user.getNameLogin().subscribe(name => {
-        this.nameLogin = name
-      })
-      const parseNameCookie = JSON.parse(namecookie)
-      this.user.setNameLogin(parseNameCookie.username)
+      this.product.cartItemAdded.subscribe(() => {
+        this.cartItems = this.product.cartItems.value.length;
+      });
     }
-    if (namecookieadmin) {
-      this.user.getNameLogin().subscribe(name => {
-        this.nameLoginAdmin = name
-      })
-      const parseNameCookie = JSON.parse(namecookieadmin)
-      this.user.setNameLogin(parseNameCookie.username)
-    }
+    this.getName()
   }
-
+  getName(){
+    const namecookieUser = this.cookieService.get("user");
+    this.user.setNameLogin(JSON.parse(namecookieUser).username)
+  }
   login() {
-
     const dialogRef = this.dialog.open(LoginComponent);
   }
+
   logout() {
-    this.cookieService.deleteAll('user')
-    this.user.setNameLogin(this.name)
-    this.router.navigate(['/home'])
+    this.cookieService.deleteAll('user');
+    this.cookieService.deleteAll('admin');
+    this.user.setNameLogin(this.name);
+    this.router.navigate(['/home']);
     this.cartItems = 0;
   }
 }
-
-
-
-
-
-
-
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1

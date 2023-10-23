@@ -45,10 +45,7 @@ export class CartComponent implements OnInit {
         this.total = 0;
       });
     }
-<<<<<<< HEAD
-=======
     // let cart = localStorage.removeItem("cartItems");
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
   }
 
   getTotal(items: Product[]): number {
@@ -64,9 +61,6 @@ export class CartComponent implements OnInit {
         this.switchcart = "default";
       }
     });
-<<<<<<< HEAD
-
-=======
     // xoa local
     // const cart = JSON.parse(localStorage.getItem('cartItems') || '[]') as Product[];
     // if (cart) {
@@ -75,7 +69,6 @@ export class CartComponent implements OnInit {
     //   this.product = cart;
     //   this.total = this.getTotal(this.product);
     // }
->>>>>>> 2b24f6c9935e5e59160e0fa864d66aea6d3729b1
   }
 
   continuetopay() {
